@@ -1,0 +1,95 @@
+.language-toggle {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.language-toggle:focus {
+  outline: 2px solid rgba(79, 70, 229, 0.5);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.language-toggle-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 60px;
+  justify-content: center;
+}
+
+.language-icon {
+  font-size: 14px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.language-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Dark theme styles */
+[data-theme="dark"] .language-toggle-content {
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+}
+
+[data-theme="dark"] .language-toggle-content:hover {
+  background: linear-gradient(135deg, #5b52f0, #9f7aea);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Light theme styles */
+[data-theme="light"] .language-toggle-content {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+[data-theme="light"] .language-toggle-content:hover {
+  background: linear-gradient(135deg, #fcd34d, #f6ad55);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .language-toggle-content {
+    padding: 0.4rem 0.6rem;
+    min-width: 50px;
+  }
+  
+  .language-icon {
+    font-size: 12px;
+  }
+  
+  .language-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-toggle-content {
+    padding: 0.3rem 0.5rem;
+    min-width: 45px;
+  }
+  
+  .language-icon {
+    font-size: 11px;
+  }
+  
+  .language-text {
+    font-size: 10px;
+  }
+}

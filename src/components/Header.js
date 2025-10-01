@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCode, FaUser, FaCogs, FaProjectDiagram, FaGamepad, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 const Header = ({ currentSection, setCurrentSection }) => {
@@ -79,6 +80,10 @@ const Header = ({ currentSection, setCurrentSection }) => {
             );
           })}
         </nav>
+
+        <div className="header-controls">
+          <ThemeToggle />
+        </div>
 
         <motion.button
           className="mobile-menu-toggle"

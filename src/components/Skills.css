@@ -553,3 +553,160 @@
     padding: 0.3rem 0.6rem;
   }
 }
+
+/* Light theme styles for Skills component */
+[data-theme="light"] .skills {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #fbbf24 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .section-title {
+  color: #1a202c !important;
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="light"] .skills .section-subtitle {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .skills .subsection-title {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .skills .skill-name {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .skill-level {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .skills .knowledge-header h4 {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .knowledge-level {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .skills .knowledge-description {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .skills .project-header h4 {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .project-description {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .skills .tech-tag {
+  background: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .skills .tech-tag:hover {
+  background: rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .skill-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .skill-card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .skills .skill-name {
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .skills .skill-level {
+  color: #4a5568 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .skills .skill-progress {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .skill-progress-fill {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .skills .knowledge-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .knowledge-card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .skills .knowledge-header h4 {
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .skills .knowledge-level {
+  color: #4a5568 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .skills .knowledge-description {
+  color: #2d3748 !important;
+  font-weight: 400 !important;
+}
+
+[data-theme="light"] .skills .knowledge-progress {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .knowledge-progress-fill {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .skills .project-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .skills .project-card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .skills .project-header h4 {
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .skills .project-description {
+  color: #2d3748 !important;
+  font-weight: 400 !important;
+}

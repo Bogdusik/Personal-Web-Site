@@ -707,3 +707,124 @@
     font-size: 1.1rem;
   }
 }
+
+/* Light theme styles for Contact component */
+[data-theme="light"] .contact {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .contact .section-title {
+  color: #1a202c !important;
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="light"] .contact .section-subtitle {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .contact .info-card h3,
+[data-theme="light"] .contact .skills-card h3 {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .contact .info-card p {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .contact .contact-title {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .contact .contact-value {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .contact .form-card h3 {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .contact .form-group label {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .contact .contact-footer p {
+  color: #2d3748 !important;
+}
+
+/* Light theme button styles for Contact */
+[data-theme="light"] .contact .btn-primary {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .contact .btn-primary:hover {
+  background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .contact .btn-primary:disabled {
+  background: rgba(79, 70, 229, 0.3) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(79, 70, 229, 0.3) !important;
+  cursor: not-allowed !important;
+}
+
+[data-theme="light"] .contact .btn-secondary {
+  background: transparent !important;
+  color: #4f46e5 !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .contact .btn-secondary:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: #4f46e5 !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .contact .social-link {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #4f46e5 !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .contact .social-link:hover {
+  background: #4f46e5 !important;
+  color: white !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Enhanced form styles for light theme */
+[data-theme="light"] .contact .form-group input,
+[data-theme="light"] .contact .form-group textarea {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1a202c !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .contact .form-group input:focus,
+[data-theme="light"] .contact .form-group textarea:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  outline: none !important;
+}
+
+[data-theme="light"] .contact .form-group input::placeholder,
+[data-theme="light"] .contact .form-group textarea::placeholder {
+  color: rgba(26, 32, 44, 0.6) !important;
+  font-weight: 400 !important;
+}
