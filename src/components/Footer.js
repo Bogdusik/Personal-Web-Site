@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaCode, 
-  FaRocket, FaGraduationCap, FaMapMarkerAlt, FaPhone
+  FaRocket, FaGraduationCap, FaMapMarkerAlt
 } from 'react-icons/fa';
 import './Footer.css';
 
@@ -25,7 +25,7 @@ const Footer = () => {
     {
       name: 'Email',
       icon: FaEnvelope,
-      url: 'mailto:bohdan@example.com',
+      url: 'mailto:bogdyn6@gmail.com',
       color: '#ea4335'
     }
   ];
@@ -165,11 +165,7 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <FaEnvelope className="contact-icon" />
-                <span>bohdan@example.com</span>
-              </div>
-              <div className="contact-item">
-                <FaPhone className="contact-icon" />
-                <span>+44 123 456 7890</span>
+                <span>bogdyn6@gmail.com</span>
               </div>
               <div className="contact-item">
                 <FaMapMarkerAlt className="contact-icon" />
