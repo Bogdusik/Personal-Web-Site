@@ -469,3 +469,73 @@
     font-size: 0.85rem;
   }
 }
+
+/* Light theme styles for About component */
+[data-theme="light"] .about {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .about .section-title {
+  color: #1a202c !important;
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="light"] .about .section-subtitle {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .about .subsection-title {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .about .intro-card h3 {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .about .intro-card p {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .about .education-content h4 {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .about .degree {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .about .period {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .about .description {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .about .certificate-icon {
+  color: #f59e0b !important;
+}
+
+[data-theme="light"] .about .certificate-item span {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .about .language-name {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .about .language-level {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .about .interest-icon {
+  color: var(--interest-color) !important;
+}
+
+[data-theme="light"] .about .interest-item span {
+  color: #2d3748 !important;
+}

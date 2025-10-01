@@ -43,8 +43,8 @@ const Projects = () => {
         'Optimized database queries and indexing',
         'Built reusable React components'
       ],
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      github: 'https://github.com/Bogdusik/Real-Time-Chat-Application',
+      demo: 'https://github.com/Bogdusik/Real-Time-Chat-Application',
       image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop&crop=center',
       complexity: 90,
       duration: '3 months'
@@ -80,7 +80,7 @@ const Projects = () => {
         'Optimized chart rendering',
         'Created executable JAR files'
       ],
-      github: 'https://github.com',
+      github: 'https://github.com/Bogdusik/CryptoChartApp',
       demo: null,
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop&crop=center',
       complexity: 80,
@@ -117,7 +117,7 @@ const Projects = () => {
         'CSS animations for smooth transitions',
         'Tested across multiple browsers'
       ],
-      github: 'https://github.com',
+      github: 'https://github.com/Bogdusik/CoderType',
       demo: 'https://coder-type-bogdus1k.vercel.app',
       image: 'https://coder-type-bogdus1k.vercel.app',
       complexity: 75,

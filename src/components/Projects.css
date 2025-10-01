@@ -784,3 +784,351 @@
     line-height: 1.4;
   }
 }
+
+/* Light theme styles for Projects component */
+[data-theme="light"] .projects {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .projects .section-title {
+  color: #1a202c !important;
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .section-subtitle {
+  color: #4a5568 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .projects .achievements-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .projects .subsection-title {
+  color: #4f46e5 !important;
+  text-shadow: 0 1px 2px rgba(79, 70, 229, 0.2) !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .projects .achievement-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .projects .achievement-card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-5px) !important;
+}
+
+[data-theme="light"] .projects .achievement-card h4 {
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .achievement-card p {
+  color: #2d3748 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .projects .achievement-icon {
+  color: #4f46e5 !important;
+  text-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .projects .project-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .projects .project-card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .projects .project-header h3 {
+  color: #1a202c !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-description {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .projects .tech-item {
+  background: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .projects .tech-item:hover {
+  background: rgba(79, 70, 229, 0.2) !important;
+  border-color: #4f46e5 !important;
+}
+
+[data-theme="light"] .projects .btn-primary {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .projects .btn-primary:hover {
+  background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+}
+
+[data-theme="light"] .projects .btn-secondary {
+  background: transparent !important;
+  color: #4f46e5 !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .projects .btn-secondary:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: #4f46e5 !important;
+}
+
+/* Enhanced borders and visibility for all project elements */
+[data-theme="light"] .projects .project-navigation {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 1rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-nav-item {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme="light"] .projects .project-nav-item:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  color: #4f46e5 !important;
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .projects .project-nav-item.active {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .projects .project-display {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .projects .project-header {
+  border-bottom: 2px solid rgba(79, 70, 229, 0.2) !important;
+  padding-bottom: 1.5rem !important;
+}
+
+[data-theme="light"] .projects .project-meta {
+  background: rgba(79, 70, 229, 0.05) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin: 1rem 0 !important;
+}
+
+[data-theme="light"] .projects .project-tag {
+  background: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 0.3rem 0.8rem !important;
+  margin: 0.2rem !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-tag.complexity {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #059669 !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+[data-theme="light"] .projects .project-tag.duration {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #d97706 !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+[data-theme="light"] .projects .project-image {
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-content {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .features-list,
+[data-theme="light"] .projects .challenges-list,
+[data-theme="light"] .projects .solutions-list {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin: 0.5rem 0 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .features-list li,
+[data-theme="light"] .projects .challenges-list li,
+[data-theme="light"] .projects .solutions-list li {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.1) !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 0.8rem !important;
+  margin: 0.3rem 0 !important;
+  color: #1a202c !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="light"] .projects .features-list li::before {
+  color: #059669 !important;
+  text-shadow: 0 1px 2px rgba(5, 150, 105, 0.3) !important;
+}
+
+[data-theme="light"] .projects .challenges-list li::before {
+  color: #dc2626 !important;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.3) !important;
+}
+
+[data-theme="light"] .projects .solutions-list li::before {
+  color: #d97706 !important;
+  text-shadow: 0 1px 2px rgba(217, 119, 6, 0.3) !important;
+}
+
+/* Technology tags and additional elements */
+[data-theme="light"] .projects .technologies-section {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .technologies-grid {
+  gap: 1rem !important;
+}
+
+[data-theme="light"] .projects .tech-item {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  padding: 0.8rem 1.2rem !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme="light"] .projects .tech-item:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: #4f46e5 !important;
+  color: #4f46e5 !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .projects .tech-item .tech-icon {
+  color: #4f46e5 !important;
+  text-shadow: 0 1px 2px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .projects .tech-item:hover .tech-icon {
+  color: #3730a3 !important;
+  text-shadow: 0 1px 2px rgba(55, 48, 163, 0.4) !important;
+}
+
+[data-theme="light"] .projects .project-actions {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-actions .btn {
+  margin: 0.5rem !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme="light"] .projects .project-actions .btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .projects .project-description {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  color: #1a202c !important;
+  line-height: 1.6 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .projects .project-stats {
+  background: rgba(79, 70, 229, 0.05) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin: 1rem 0 !important;
+}
+
+[data-theme="light"] .projects .stat-item {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  border-radius: 6px !important;
+  padding: 0.8rem !important;
+  margin: 0.5rem !important;
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
