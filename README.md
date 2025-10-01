@@ -125,10 +125,23 @@ npm run build
 ```
 
 ### Deploy Options
+- **Vercel** (Recommended): Connect GitHub repository for automatic deployment
 - **Netlify**: Drag and drop the `build` folder
-- **Vercel**: Connect GitHub repository
 - **GitHub Pages**: Use `gh-pages` package
 - **AWS S3**: Upload build files to S3 bucket
+
+### Vercel Deployment
+1. Go to [Vercel](https://vercel.com)
+2. Sign in with your GitHub account
+3. Click "New Project"
+4. Import your GitHub repository: `Bogdusik/Personal-Web-Site`
+5. Vercel will automatically detect it's a React app
+6. Click "Deploy" - no configuration needed!
+
+The project is already configured for Vercel with:
+- `vercel.json` configuration file
+- `vercel-build` script in package.json
+- Proper build settings for React
 
 ### Environment Variables
 No environment variables required for basic functionality.
