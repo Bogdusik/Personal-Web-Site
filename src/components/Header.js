@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaCode, FaUser, FaCogs, FaProjectDiagram, FaGamepad, FaEnvelope } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaCode, FaUser, FaCogs, FaProjectDiagram, FaGamepad, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 import './Header.css';
 
 const Header = ({ currentSection, setCurrentSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +37,11 @@ const Header = ({ currentSection, setCurrentSection }) => {
       }, 100);
     }
     setCurrentSection(sectionId);
+    setIsMobileMenuOpen(false); // Закрываем мобильное меню при клике
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -74,17 +80,74 @@ const Header = ({ currentSection, setCurrentSection }) => {
           })}
         </nav>
 
-        <motion.div
+        <motion.button
           className="mobile-menu-toggle"
+          onClick={toggleMobileMenu}
           whileTap={{ scale: 0.95 }}
+          aria-label="Toggle mobile menu"
         >
-          <div className="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </motion.div>
+          <motion.div
+            className="hamburger"
+            animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.span
+              animate={{ 
+                rotate: isMobileMenuOpen ? 45 : 0,
+                y: isMobileMenuOpen ? 6 : 0
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              animate={{ 
+                opacity: isMobileMenuOpen ? 0 : 1
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              animate={{ 
+                rotate: isMobileMenuOpen ? -45 : 0,
+                y: isMobileMenuOpen ? -6 : 0
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        </motion.button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="mobile-menu-content">
+              {navItems.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.button
+                    key={item.id}
+                    className={`mobile-nav-item ${currentSection === item.id ? 'active' : ''}`}
+                    onClick={() => handleNavClick(item.id)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Icon className="mobile-nav-icon" />
+                    <span>{item.label}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };

@@ -350,10 +350,12 @@
   
   .section-title {
     font-size: 2.5rem;
+    line-height: 1.2;
   }
   
   .section-subtitle {
     font-size: 1.1rem;
+    line-height: 1.5;
   }
   
   .contact-content {
@@ -367,8 +369,106 @@
     padding: 1.5rem;
   }
   
+  .info-card h3,
+  .skills-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .info-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .contact-details {
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .contact-item {
+    padding: 0.8rem;
+  }
+  
+  .contact-icon {
+    font-size: 1.3rem;
+  }
+  
+  .contact-title {
+    font-size: 0.85rem;
+  }
+  
+  .contact-value {
+    font-size: 0.95rem;
+  }
+  
+  .download-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .skills-card h3 {
+    font-size: 1.4rem;
+  }
+  
   .skills-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.6rem;
+  }
+  
+  .skill-tag {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .form-card {
+    padding: 1.5rem;
+  }
+  
+  .form-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-form {
+    gap: 1.2rem;
+  }
+  
+  .form-group label {
+    font-size: 0.95rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+  }
+  
+  .submit-btn {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .contact-footer {
+    padding: 1.2rem;
+  }
+  
+  .contact-footer p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .footer-links {
+    gap: 1.2rem;
+  }
+  
+  .footer-links a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
   
   .contact-item:hover {
@@ -391,6 +491,15 @@
   
   .section-title {
     font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .contact-content {
+    gap: 1.5rem;
   }
   
   .info-card,
@@ -400,12 +509,98 @@
     padding: 1.2rem;
   }
   
-  .form-card h3 {
+  .info-card h3,
+  .skills-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .info-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .contact-details {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-item {
+    padding: 0.7rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-icon {
     font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .contact-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .contact-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .download-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
   }
   
   .skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .skill-tag {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .form-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .contact-form {
+    gap: 1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .form-group textarea {
+    min-height: 80px;
+  }
+  
+  .submit-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  
+  .contact-footer {
+    padding: 1rem;
+  }
+  
+  .contact-footer p {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
   
   .footer-links {
@@ -413,8 +608,102 @@
   }
   
   .footer-links a {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Дополнительная оптимизация для очень маленьких экранов */
+@media (max-width: 360px) {
+  .contact {
+    padding: 3rem 0.8rem 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .contact-content {
+    gap: 1.2rem;
+  }
+  
+  .info-card,
+  .skills-card,
+  .form-card,
+  .contact-footer {
+    padding: 1rem;
+  }
+  
+  .info-card h3,
+  .skills-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-card p {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  
+  .contact-item {
+    padding: 0.6rem;
+    gap: 0.4rem;
+  }
+  
+  .contact-icon {
     font-size: 1.3rem;
+  }
+  
+  .contact-title {
+    font-size: 0.75rem;
+  }
+  
+  .contact-value {
+    font-size: 0.85rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  
+  .skill-tag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .form-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .submit-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer-links {
+    gap: 0.8rem;
+  }
+  
+  .footer-links a {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
   }
 }

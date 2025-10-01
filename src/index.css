@@ -13,6 +13,8 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 code {
@@ -39,4 +41,59 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
+}
+
+/* Мобильные оптимизации */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Улучшенная прокрутка на мобильных */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Предотвращение горизонтального скролла */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Оптимизация для touch устройств */
+  button, a, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Исключения для текстовых полей */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="password"], 
+  textarea {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Дополнительные оптимизации для маленьких экранов */
+  * {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
 }
