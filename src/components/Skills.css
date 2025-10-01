@@ -331,33 +331,118 @@
   
   .section-title {
     font-size: 2.5rem;
+    line-height: 1.2;
   }
   
   .section-subtitle {
     font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .skills-content {
+    gap: 2rem;
   }
   
   .category-tabs {
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
   }
   
   .category-tab {
     width: 100%;
     max-width: 300px;
     justify-content: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .tab-icon {
+    font-size: 1.1rem;
   }
   
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    padding: 1.2rem;
+  }
+  
+  .skill-header {
+    margin-bottom: 0.8rem;
+  }
+  
+  .skill-icon {
+    font-size: 1.3rem;
+  }
+  
+  .skill-name {
+    font-size: 1rem;
+  }
+  
+  .level-percentage {
+    font-size: 0.85rem;
+  }
+  
+  .knowledge-section,
+  .projects-section {
+    margin-top: 2rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
   .knowledge-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .knowledge-card {
+    padding: 1.2rem;
+  }
+  
+  .knowledge-header h4 {
+    font-size: 1.1rem;
+  }
+  
+  .knowledge-level {
+    font-size: 0.9rem;
+  }
+  
+  .knowledge-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .project-card {
+    padding: 1.2rem;
+  }
+  
+  .project-header h4 {
+    font-size: 1.1rem;
+  }
+  
+  .complexity-indicator span {
+    font-size: 0.85rem;
+  }
+  
+  .project-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .tech-tag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
   
   .skill-card:hover {
@@ -380,23 +465,91 @@
   
   .section-title {
     font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .skills-content {
+    gap: 1.5rem;
   }
   
   .skill-categories,
   .knowledge-section,
   .projects-section {
-    padding: 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  .category-tab {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .tab-icon {
+    font-size: 1rem;
   }
   
   .skill-card,
   .knowledge-card,
   .project-card {
-    padding: 1.2rem;
+    padding: 1rem;
+  }
+  
+  .skill-header {
+    margin-bottom: 0.6rem;
+  }
+  
+  .skill-icon {
+    font-size: 1.2rem;
+  }
+  
+  .skill-name {
+    font-size: 0.95rem;
+  }
+  
+  .level-percentage {
+    font-size: 0.8rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .knowledge-header h4 {
+    font-size: 1rem;
+  }
+  
+  .knowledge-level {
+    font-size: 0.85rem;
+  }
+  
+  .knowledge-description {
+    font-size: 0.85rem;
+  }
+  
+  .project-header h4 {
+    font-size: 1rem;
   }
   
   .complexity-indicator {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+  
+  .complexity-indicator span {
+    font-size: 0.8rem;
+  }
+  
+  .project-description {
+    font-size: 0.85rem;
+  }
+  
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
   }
 }
