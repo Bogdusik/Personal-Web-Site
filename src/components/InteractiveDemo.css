@@ -626,3 +626,162 @@
     font-size: 0.9rem;
   }
 }
+
+/* Light theme styles for Interactive Demo */
+[data-theme="light"] .interactive-demo {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #fbbf24 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .interactive-demo .section-title {
+  color: #1a202c !important;
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .section-subtitle {
+  color: #4a5568 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .interactive-demo .menu-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .interactive-demo .menu-card h3 {
+  color: #1a202c !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-group label {
+  color: #1a202c !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-button {
+  background: rgba(79, 70, 229, 0.15) !important;
+  color: #1a202c !important;
+  border: 2px solid rgba(79, 70, 229, 0.4) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-button:hover {
+  background: rgba(79, 70, 229, 0.25) !important;
+  border-color: #4f46e5 !important;
+  color: #1a202c !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-button.selected {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .start-button {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+}
+
+[data-theme="light"] .interactive-demo .start-button:hover {
+  background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5) !important;
+}
+
+[data-theme="light"] .interactive-demo .game-container {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .interactive-demo .game-header h3 {
+  color: #1a202c !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .game-stats {
+  background: rgba(79, 70, 229, 0.05) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .stat-item {
+  color: #1a202c !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .interactive-demo .typing-area {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .interactive-demo .typing-area:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+}
+
+[data-theme="light"] .interactive-demo .typing-area::placeholder {
+  color: rgba(26, 32, 44, 0.6) !important;
+}
+
+[data-theme="light"] .interactive-demo .game-controls button {
+  background: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .interactive-demo .game-controls button:hover {
+  background: rgba(79, 70, 229, 0.2) !important;
+  border-color: #4f46e5 !important;
+}
+
+[data-theme="light"] .interactive-demo .game-controls .btn-primary {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+  border-color: #4f46e5 !important;
+}
+
+[data-theme="light"] .interactive-demo .game-controls .btn-primary:hover {
+  background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
+}
+
+/* Additional styles for better button visibility */
+[data-theme="light"] .interactive-demo .option-button svg,
+[data-theme="light"] .interactive-demo .option-button i {
+  color: inherit !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-button.selected svg,
+[data-theme="light"] .interactive-demo .option-button.selected i {
+  color: white !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+}
+
+[data-theme="light"] .interactive-demo .option-button:hover svg,
+[data-theme="light"] .interactive-demo .option-button:hover i {
+  color: #1a202c !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+}

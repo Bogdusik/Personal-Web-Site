@@ -28,15 +28,40 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Using EmailJS for form submission
+      const emailData = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Bohdan'
+      };
+
+      // Simulate API call (replace with actual EmailJS integration)
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
       
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 2000);
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   };
 
   const contactInfo = [
@@ -57,15 +82,15 @@ const Contact = () => {
     {
       icon: FaLinkedin,
       title: 'LinkedIn',
-      value: 'linkedin.com/in/bogdan',
-      link: 'https://linkedin.com/in/bogdan',
+      value: 'linkedin.com/in/bohdan-developer',
+      link: 'https://linkedin.com/in/bohdan-developer',
       color: '#0077b5'
     },
     {
       icon: FaGithub,
       title: 'GitHub',
-      value: 'github.com/bogdan',
-      link: 'https://github.com/bogdan',
+      value: 'github.com/Bogdusik',
+      link: 'https://github.com/Bogdusik',
       color: '#333'
     }
   ];
@@ -290,10 +315,10 @@ const Contact = () => {
             of working together and contributing to innovative projects.
           </p>
           <div className="footer-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Bogdusik" target="_blank" rel="noopener noreferrer">
               <FaGithub />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://linkedin.com/in/bohdan-developer" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
             <a href="mailto:bogdyn6@gmail.com">

@@ -139,7 +139,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <motion.a
-              href="https://github.com"
+              href="https://github.com/Bogdusik"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}
@@ -148,7 +148,7 @@ const Hero = () => {
               <FaGithub />
             </motion.a>
             <motion.a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/bohdan-developer"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}

@@ -464,3 +464,65 @@
     font-size: 0.75rem;
   }
 }
+
+/* Light theme styles for Hero component */
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .hero .hero-title {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .hero .hero-title .highlight {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="light"] .hero .hero-subtitle {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .hero .typed-text {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .hero .hero-description {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .hero .btn-secondary {
+  background: transparent !important;
+  color: #1a202c !important;
+  border: 2px solid rgba(26, 32, 44, 0.3) !important;
+}
+
+[data-theme="light"] .hero .btn-secondary:hover {
+  background: rgba(26, 32, 44, 0.1) !important;
+  border-color: rgba(26, 32, 44, 0.5) !important;
+}
+
+[data-theme="light"] .hero .hero-social a {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .hero .hero-social a:hover {
+  background: rgba(79, 70, 229, 0.3) !important;
+  color: white !important;
+}
+
+[data-theme="light"] .hero .scroll-indicator {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .hero .scroll-indicator span {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .hero .scroll-arrow {
+  color: #4f46e5 !important;
+}
