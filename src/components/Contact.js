@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, 
+  FaEnvelope, FaMapMarkerAlt, FaLinkedin, 
   FaGithub, FaDownload, FaPaperPlane, FaCheck, FaTimes
 } from 'react-icons/fa';
 import './Contact.css';
@@ -43,16 +43,9 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       title: 'Email',
-      value: 'bohdan@example.com',
-      link: 'mailto:bohdan@example.com',
+      value: 'bogdyn6@gmail.com',
+      link: 'mailto:bogdyn6@gmail.com',
       color: '#ef4444'
-    },
-    {
-      icon: FaPhone,
-      title: 'Phone',
-      value: '+44 123 456 7890',
-      link: 'tel:+441234567890',
-      color: '#10b981'
     },
     {
       icon: FaMapMarkerAlt,
@@ -303,7 +296,7 @@ const Contact = () => {
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
-            <a href="mailto:bohdan@example.com">
+            <a href="mailto:bogdyn6@gmail.com">
               <FaEnvelope />
             </a>
           </div>
