@@ -79,6 +79,9 @@
   flex-direction: column;
   cursor: pointer;
   padding: 0.5rem;
+  background: none;
+  border: none;
+  color: white;
 }
 
 .hamburger {
@@ -93,10 +96,70 @@
   background: white;
   border-radius: 2px;
   transition: all 0.3s ease;
+  display: block;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.mobile-menu-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+
+.mobile-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+}
+
+.mobile-nav-item.active {
+  background: rgba(79, 70, 229, 0.3);
+  border: 1px solid rgba(79, 70, 229, 0.5);
+}
+
+.mobile-nav-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
   .header-content {
     padding: 1rem;
   }
@@ -116,6 +179,10 @@
   .logo-icon {
     font-size: 1.5rem;
   }
+  
+  .mobile-nav-item:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -125,5 +192,46 @@
   
   .logo {
     font-size: 1rem;
+  }
+  
+  .logo-icon {
+    font-size: 1.3rem;
+  }
+  
+  .mobile-menu-toggle {
+    padding: 0.3rem;
+  }
+  
+  .hamburger span {
+    width: 20px;
+    height: 2px;
+  }
+}
+
+/* Дополнительная оптимизация для очень маленьких экранов */
+@media (max-width: 360px) {
+  .header-content {
+    padding: 0.5rem;
+  }
+  
+  .logo {
+    font-size: 0.9rem;
+  }
+  
+  .logo-icon {
+    font-size: 1.2rem;
+  }
+  
+  .mobile-menu-content {
+    padding: 0.8rem;
+  }
+  
+  .mobile-nav-item {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .mobile-nav-icon {
+    font-size: 1.1rem;
   }
 }

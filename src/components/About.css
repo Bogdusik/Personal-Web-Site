@@ -267,22 +267,65 @@
   
   .section-title {
     font-size: 2.5rem;
+    line-height: 1.2;
   }
   
   .section-subtitle {
     font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .about-content {
+    gap: 2rem;
   }
   
   .intro-card {
     padding: 1.5rem;
+    margin: 0;
   }
   
   .intro-card h3 {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
   
   .intro-card p {
     font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .subsection-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .education-section,
+  .certificates-section,
+  .languages-section,
+  .interests-section {
+    padding: 1.5rem;
+  }
+  
+  .education-item {
+    padding: 1.2rem;
+  }
+  
+  .education-content h4 {
+    font-size: 1.2rem;
+  }
+  
+  .degree {
+    font-size: 1rem;
+  }
+  
+  .period {
+    font-size: 0.85rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
   .bottom-sections {
@@ -292,10 +335,28 @@
   
   .certificates-grid {
     grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .certificate-item {
+    padding: 1.2rem;
   }
   
   .interests-grid {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .interest-item {
+    padding: 1.2rem;
+  }
+  
+  .interest-icon {
+    font-size: 1.8rem;
+  }
+  
+  .interest-item span {
+    font-size: 0.85rem;
   }
   
   .education-item:hover {
@@ -303,6 +364,14 @@
   }
   
   .language-item:hover {
+    transform: none;
+  }
+  
+  .certificate-item:hover {
+    transform: none;
+  }
+  
+  .interest-item:hover {
     transform: none;
   }
 }
@@ -314,10 +383,16 @@
   
   .section-title {
     font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
   }
   
   .subsection-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
   
   .intro-card,
@@ -325,10 +400,72 @@
   .certificates-section,
   .languages-section,
   .interests-section {
-    padding: 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  .intro-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .intro-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .education-item {
+    padding: 1rem;
+  }
+  
+  .education-content h4 {
+    font-size: 1.1rem;
+  }
+  
+  .degree {
+    font-size: 0.95rem;
+  }
+  
+  .period {
+    font-size: 0.8rem;
+  }
+  
+  .description {
+    font-size: 0.85rem;
+  }
+  
+  .certificate-item {
+    padding: 1rem;
+  }
+  
+  .certificate-item span {
+    font-size: 0.9rem;
   }
   
   .interests-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  
+  .interest-item {
+    padding: 1rem;
+  }
+  
+  .interest-icon {
+    font-size: 1.5rem;
+  }
+  
+  .interest-item span {
+    font-size: 0.8rem;
+  }
+  
+  .language-item {
+    padding: 0.8rem;
+  }
+  
+  .language-name {
+    font-size: 1rem;
+  }
+  
+  .language-level {
+    font-size: 0.85rem;
   }
 }

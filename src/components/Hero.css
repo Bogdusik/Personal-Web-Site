@@ -24,6 +24,8 @@
   border-radius: 50%;
   background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
   animation: float 6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .shape-1 {
@@ -62,11 +64,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
+  position: relative;
 }
 
 .hero-text {
   color: white;
+  position: relative;
+  z-index: 3;
 }
 
 .hero-title {
@@ -177,6 +182,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .code-window {
@@ -264,54 +271,196 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem;
+    min-height: 100vh;
+  }
+  
   .hero-content {
     grid-template-columns: 1fr;
     gap: 2rem;
     text-align: center;
+    max-width: 100%;
+    z-index: 2;
+  }
+  
+  .hero-text {
+    order: 1;
+    z-index: 3;
+  }
+  
+  .hero-visual {
+    order: 2;
+    z-index: 1;
   }
   
   .hero-title {
     font-size: 2.5rem;
+    line-height: 1.1;
   }
   
   .hero-subtitle {
     font-size: 1.2rem;
+    min-height: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+    max-width: 100%;
+    text-align: center;
   }
   
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
   
   .btn {
-    width: 200px;
+    width: 100%;
+    max-width: 250px;
     justify-content: center;
+    padding: 1rem 1.5rem;
   }
   
   .code-window {
     max-width: 100%;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .window-content {
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
+  
+  .hero-social {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .scroll-indicator {
+    bottom: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
     padding: 1rem;
+    min-height: 100vh;
+  }
+  
+  .hero-content {
+    gap: 1.5rem;
+    z-index: 2;
+  }
+  
+  .hero-text {
+    order: 1;
+    z-index: 3;
+  }
+  
+  .hero-visual {
+    order: 2;
+    z-index: 1;
   }
   
   .hero-title {
     font-size: 2rem;
+    line-height: 1.1;
   }
   
   .hero-subtitle {
     font-size: 1rem;
+    min-height: 1.2rem;
   }
   
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
   .btn {
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
+    width: 100%;
+  }
+  
+  .code-window {
+    margin-top: 1rem;
+  }
+  
+  .window-content {
+    font-size: 0.7rem;
+    padding: 0.8rem;
+  }
+  
+  .hero-social a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  
+  .scroll-indicator {
+    bottom: 0.5rem;
+  }
+  
+  .scroll-indicator span {
+    font-size: 0.8rem;
+  }
+}
+
+/* Дополнительная оптимизация для очень маленьких экранов */
+@media (max-width: 360px) {
+  .hero {
+    padding: 0.8rem;
+  }
+  
+  .hero-content {
+    gap: 1.2rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    min-height: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .code-window {
+    margin-top: 0.8rem;
+  }
+  
+  .window-content {
+    font-size: 0.65rem;
+    padding: 0.6rem;
+  }
+  
+  .hero-social a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .scroll-indicator {
+    bottom: 0.3rem;
+  }
+  
+  .scroll-indicator span {
+    font-size: 0.75rem;
   }
 }

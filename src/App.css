@@ -7,6 +7,7 @@
 .main-content {
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
 }
 
 /* Плавные переходы между секциями */
@@ -207,5 +208,42 @@ section + section {
   .loading-spinner {
     width: 50px;
     height: 50px;
+  }
+  
+  /* Улучшенная мобильная оптимизация */
+  .main-content {
+    overflow-x: hidden;
+  }
+  
+  /* Оптимизация для touch устройств */
+  button, a, input, textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Улучшенная прокрутка на мобильных */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-content h2 {
+    font-size: 1rem;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Дополнительные оптимизации для маленьких экранов */
+  * {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Улучшенная читаемость на мобильных */
+  body {
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
