@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { 
   FaEnvelope, FaMapMarkerAlt, FaLinkedin, 
   FaGithub, FaDownload, FaPaperPlane, FaCheck, FaTimes
@@ -29,30 +30,26 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Using EmailJS for form submission
-      const emailData = {
+      // EmailJS configuration
+      const serviceId = 'service_zr8w9kr';
+      const templateId = 'template_ng659f8';
+      const publicKey = '9TIu-O2DZmqn2K4xe';
+
+      const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        to_name: 'Bohdan'
+        to_name: 'Bohdan',
+        reply_to: formData.email
       };
 
-      // Simulate API call (replace with actual EmailJS integration)
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData)
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
