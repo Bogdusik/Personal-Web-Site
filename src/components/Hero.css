@@ -249,24 +249,50 @@
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  text-align: center;
   color: white;
   opacity: 0.7;
-}
-
-.scroll-arrow {
-  font-size: 1.5rem;
-  color: #8b5cf6;
+  width: fit-content;
+  z-index: 10;
 }
 
 .scroll-indicator span {
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.scroll-text {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.scroll-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8b5cf6, #a855f7);
+  animation: underlineExpand 2s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes underlineExpand {
+  0%, 100% { width: 0; }
+  50% { width: 100%; }
+}
+
+.scroll-indicator {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Responsive Design */
@@ -342,6 +368,11 @@
   
   .scroll-indicator {
     bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
   }
 }
 
@@ -404,6 +435,11 @@
   
   .scroll-indicator {
     bottom: 0.5rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
   }
   
   .scroll-indicator span {
@@ -458,8 +494,13 @@
   
   .scroll-indicator {
     bottom: 0.3rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
   }
-  
+
   .scroll-indicator span {
     font-size: 0.75rem;
   }
@@ -523,6 +564,42 @@
   color: #2d3748 !important;
 }
 
-[data-theme="light"] .hero .scroll-arrow {
-  color: #4f46e5 !important;
+/* Light theme styles for code window */
+[data-theme="light"] .hero .code-window {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .hero .window-header {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .hero .window-title {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .hero .window-content {
+  color: #1a202c !important;
+}
+
+/* Light theme code syntax highlighting */
+[data-theme="light"] .hero .keyword { 
+  color: #d73a49 !important; /* Red for keywords */
+}
+
+[data-theme="light"] .hero .variable { 
+  color: #005cc5 !important; /* Blue for variables */
+}
+
+[data-theme="light"] .hero .string { 
+  color: #032f62 !important; /* Dark blue for strings */
+}
+
+[data-theme="light"] .hero .function { 
+  color: #6f42c1 !important; /* Purple for functions */
+}
+
+/* Light theme styles for scroll text animation */
+[data-theme="light"] .hero .scroll-text::after {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed) !important;
 }

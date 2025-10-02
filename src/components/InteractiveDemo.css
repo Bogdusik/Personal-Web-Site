@@ -666,21 +666,23 @@
 }
 
 [data-theme="light"] .interactive-demo .option-button {
-  background: rgba(79, 70, 229, 0.15) !important;
-  color: #1a202c !important;
-  border: 2px solid rgba(79, 70, 229, 0.4) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #4f46e5 !important;
+  border: 3px solid #4f46e5 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: none !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 [data-theme="light"] .interactive-demo .option-button:hover {
-  background: rgba(79, 70, 229, 0.25) !important;
+  background: #4f46e5 !important;
   border-color: #4f46e5 !important;
-  color: #1a202c !important;
+  color: white !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
   transform: translateY(-2px) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
 [data-theme="light"] .interactive-demo .option-button.selected {
@@ -695,15 +697,18 @@
 [data-theme="light"] .interactive-demo .start-button {
   background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
   color: white !important;
-  border: 2px solid #4f46e5 !important;
+  border: 3px solid #4f46e5 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 [data-theme="light"] .interactive-demo .start-button:hover {
   background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
-  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5) !important;
+  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.6) !important;
+  transform: translateY(-3px) !important;
+  border-color: #3730a3 !important;
 }
 
 [data-theme="light"] .interactive-demo .game-container {
@@ -782,6 +787,115 @@
 
 [data-theme="light"] .interactive-demo .option-button:hover svg,
 [data-theme="light"] .interactive-demo .option-button:hover i {
-  color: #1a202c !important;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+  color: white !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+}
+
+/* Enhanced styles for mode buttons and start button */
+[data-theme="light"] .interactive-demo .mode-btn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #4f46e5 !important;
+  border: 3px solid #4f46e5 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .interactive-demo .mode-btn:hover {
+  background: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-2px) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .mode-btn.active {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .start-btn {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+  border: 3px solid #4f46e5 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .interactive-demo .start-btn:hover {
+  background: linear-gradient(45deg, #3730a3, #7c3aed) !important;
+  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.6) !important;
+  transform: translateY(-3px) !important;
+  border-color: #3730a3 !important;
+}
+
+/* Enhanced styles for difficulty buttons */
+[data-theme="light"] .interactive-demo .difficulty-btn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #4f46e5 !important;
+  border: 3px solid #4f46e5 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .interactive-demo .difficulty-btn:hover {
+  background: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-2px) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .difficulty-btn.active {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Enhanced styles for code display area in light theme */
+[data-theme="light"] .interactive-demo .code-display {
+  background: rgba(0, 0, 0, 0.85) !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+[data-theme="light"] .interactive-demo .code-container {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .interactive-demo .code-char {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .interactive-demo .code-char.correct {
+  color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .code-char.incorrect {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.2) !important;
+}
+
+[data-theme="light"] .interactive-demo .code-char.current {
+  background: rgba(79, 70, 229, 0.4) !important;
+  color: #ffffff !important;
 }

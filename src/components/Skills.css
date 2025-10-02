@@ -710,3 +710,86 @@
   color: #2d3748 !important;
   font-weight: 400 !important;
 }
+
+/* Light theme styles for main containers */
+[data-theme="light"] .skills .skill-categories {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .skills .knowledge-section,
+[data-theme="light"] .skills .projects-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Light theme styles for category tabs */
+[data-theme="light"] .skills .category-tab {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(79, 70, 229, 0.3) !important;
+  color: #4f46e5 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .skills .category-tab:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: rgba(79, 70, 229, 0.5) !important;
+  color: #3730a3 !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .category-tab.active {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  border-color: #4f46e5 !important;
+  color: white !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+}
+
+/* Light theme styles for progress bars */
+[data-theme="light"] .skills .level-bar {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .level-fill {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .skills .knowledge-bar {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .knowledge-fill {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+[data-theme="light"] .skills .complexity-bar {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .complexity-fill {
+  background: linear-gradient(45deg, #4f46e5, #8b5cf6) !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+}
+
+/* Light theme percentage and level text colors */
+[data-theme="light"] .skills .level-percentage {
+  color: #4f46e5 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .skills .complexity-indicator span {
+  color: #4f46e5 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(79, 70, 229, 0.2) !important;
+}
