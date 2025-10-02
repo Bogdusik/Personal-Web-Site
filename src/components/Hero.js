@@ -45,8 +45,8 @@ const Hero = React.memo(() => {
     try {
       // Первый способ - прямое скачивание
       const link = document.createElement('a');
-      link.href = '/CV Bohdan Bozhenko.pdf';
-      link.download = 'CV Bohdan Bozhenko.pdf';
+      link.href = '/CV-Bohdan-Bozhenko.pdf';
+      link.download = 'CV-Bohdan-Bozhenko.pdf';
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       
@@ -57,13 +57,13 @@ const Hero = React.memo(() => {
       
       // Fallback - если скачивание не сработало, открываем в новой вкладке
       setTimeout(() => {
-        window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+        window.open('/CV-Bohdan-Bozhenko.pdf', '_blank', 'noopener,noreferrer');
       }, 100);
       
     } catch (error) {
       console.error('Error downloading CV:', error);
       // Резервный вариант - открыть в новой вкладке
-      window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+      window.open('/CV-Bohdan-Bozhenko.pdf', '_blank', 'noopener,noreferrer');
     }
   }, []);
 
