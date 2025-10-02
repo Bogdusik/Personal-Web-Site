@@ -6,14 +6,24 @@ import './Hero.css';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const skills = [
@@ -202,24 +212,35 @@ const Hero = () => {
       <motion.div
         className="scroll-indicator"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
+        animate={{ 
+          opacity: scrollY > 50 ? 0 : 1,
+          y: scrollY > 50 ? 20 : 0
+        }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         onClick={() => {
           const element = document.getElementById('about');
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
         }}
-        style={{ cursor: 'pointer' }}
+        style={{ 
+          cursor: 'pointer',
+          pointerEvents: scrollY > 50 ? 'none' : 'auto'
+        }}
       >
-        <motion.div
-          className="scroll-arrow"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 1.8,
+            type: "spring",
+            stiffness: 100
+          }}
+          className="scroll-text"
         >
-          <FaCode />
-        </motion.div>
-        <span>Scroll to explore</span>
+          Scroll to explore
+        </motion.span>
       </motion.div>
     </section>
   );
