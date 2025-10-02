@@ -19,7 +19,7 @@ const Footer = () => {
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
-      url: 'https://linkedin.com/in/bohdan-developer',
+      url: 'https://www.linkedin.com/in/bohdan-bozhenko/',
       color: '#0077b5'
     },
     {

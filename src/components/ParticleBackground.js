@@ -1,126 +1,116 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useCallback } from 'react';
 import './ParticleBackground.css';
 
-const ParticleBackground = () => {
+const ParticleBackground = React.memo(() => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const particlesRef = useRef([]);
 
-  useEffect(() => {
+  const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }, []);
 
+  const initParticles = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    particlesRef.current = [];
+    // Reduce particle count for better performance
+    const particleCount = Math.min(25, Math.floor((canvas.width * canvas.height) / 25000));
+    
+    for (let i = 0; i < particleCount; i++) {
+      particlesRef.current.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.3 + 0.1
+      });
+    }
+  }, []);
+
+  const animate = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw particles
+    particlesRef.current.forEach(particle => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+      // Wrap around edges
+      if (particle.x < 0) particle.x = canvas.width;
+      if (particle.x > canvas.width) particle.x = 0;
+      if (particle.y < 0) particle.y = canvas.height;
+      if (particle.y > canvas.height) particle.y = 0;
 
-    // Particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
-        this.hue = Math.random() * 60 + 200; // Blue to purple range
-      }
+      // Draw particle
+      ctx.save();
+      ctx.globalAlpha = particle.opacity;
+      ctx.fillStyle = '#8b5cf6';
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
 
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
+    // Simplified connections (reduce complexity)
+    const particles = particlesRef.current;
+    for (let i = 0; i < particles.length - 1; i += 2) { // Skip every other particle
+      for (let j = i + 2; j < particles.length; j += 2) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Wrap around edges
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = `hsl(${this.hue}, 70%, 60%)`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
+        if (distance < 80) {
+          ctx.save();
+          ctx.globalAlpha = (80 - distance) / 80 * 0.1;
+          ctx.strokeStyle = '#8b5cf6';
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+          ctx.restore();
+        }
       }
     }
 
-    // Initialize particles
-    const initParticles = () => {
-      particlesRef.current = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
-      for (let i = 0; i < particleCount; i++) {
-        particlesRef.current.push(new Particle());
-      }
-    };
+    animationRef.current = requestAnimationFrame(animate);
+  }, []);
 
-    // Draw connections between nearby particles
-    const drawConnections = () => {
-      const particles = particlesRef.current;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            ctx.save();
-            ctx.globalAlpha = (100 - distance) / 100 * 0.2;
-            ctx.strokeStyle = '#8b5cf6';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-            ctx.restore();
-          }
-        }
-      }
-    };
-
-    // Animation loop
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      particlesRef.current.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      
-      drawConnections();
-      
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
+  useEffect(() => {
+    resizeCanvas();
     initParticles();
     animate();
 
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', initParticles);
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', initParticles);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [resizeCanvas, initParticles, animate]);
 
   return (
     <div className="particle-background">
-      <canvas
-        ref={canvasRef}
-        className="particle-canvas"
-      />
+      <canvas ref={canvasRef} className="particle-canvas" />
       <div className="gradient-overlay" />
     </div>
   );
-};
+});
+
+ParticleBackground.displayName = 'ParticleBackground';
 
 export default ParticleBackground;

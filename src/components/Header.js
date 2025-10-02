@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaUser, FaCogs, FaProjectDiagram, FaGamepad, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FaCode, FaUser, FaCogs, FaProjectDiagram, FaGamepad, FaEnvelope } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
-const Header = ({ currentSection, setCurrentSection }) => {
+const Header = React.memo(({ currentSection, setCurrentSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -17,33 +17,30 @@ const Header = ({ currentSection, setCurrentSection }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: 'hero', label: 'Home', icon: FaCode },
     { id: 'about', label: 'About', icon: FaUser },
     { id: 'skills', label: 'Skills', icon: FaCogs },
     { id: 'projects', label: 'Projects', icon: FaProjectDiagram },
     { id: 'demo', label: 'Demo', icon: FaGamepad },
     { id: 'contact', label: 'Contact', icon: FaEnvelope }
-  ];
+  ], []);
 
-  const handleNavClick = (sectionId) => {
+  const handleNavClick = useCallback((sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Более плавный скролл с задержкой
-      setTimeout(() => {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, 100);
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
     setCurrentSection(sectionId);
-    setIsMobileMenuOpen(false); // Закрываем мобильное меню при клике
-  };
+    setIsMobileMenuOpen(false);
+  }, [setCurrentSection]);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
 
   return (
     <motion.header
@@ -155,6 +152,8 @@ const Header = ({ currentSection, setCurrentSection }) => {
       </AnimatePresence>
     </motion.header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

@@ -5,9 +5,7 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -15,11 +13,7 @@ body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  line-height: 1.6;
 }
 
 html {
@@ -27,60 +21,63 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* Мобильные оптимизации */
+/* Performance optimizations */
+* {
+  will-change: auto;
+}
+
+.loading-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  margin: 2rem;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
-    line-height: 1.6;
-  }
-  
-  /* Улучшенная прокрутка на мобильных */
-  * {
     -webkit-overflow-scrolling: touch;
   }
   
-  /* Предотвращение горизонтального скролла */
   html, body {
     overflow-x: hidden;
     width: 100%;
   }
   
-  /* Оптимизация для touch устройств */
   button, a, input, textarea, select {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    touch-action: manipulation;
   }
   
-  /* Исключения для текстовых полей */
   input[type="text"], 
   input[type="email"], 
   input[type="password"], 
   textarea {
     -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
     user-select: text;
   }
 }
@@ -91,9 +88,7 @@ html {
     line-height: 1.5;
   }
   
-  /* Дополнительные оптимизации для маленьких экранов */
   * {
     -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
   }
 }
