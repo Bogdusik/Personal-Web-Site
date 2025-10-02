@@ -1,14 +1,17 @@
 .about {
   min-height: 100vh;
   padding: 6rem 2rem 4rem;
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1e3c72 100%);
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1e3c72 100%) !important;
   color: white;
-  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .section-header {
@@ -51,6 +54,8 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 800px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .intro-card h3 {
@@ -85,6 +90,8 @@
   border-radius: 16px;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .education-timeline {
@@ -134,6 +141,8 @@
   border-radius: 16px;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .certificates-grid {
@@ -181,6 +190,8 @@
   border-radius: 16px;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .languages-list {
@@ -492,12 +503,58 @@
   color: #4f46e5 !important;
 }
 
+[data-theme="light"] .about .intro-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1) !important;
+}
+
 [data-theme="light"] .about .intro-card h3 {
   color: #4f46e5 !important;
 }
 
 [data-theme="light"] .about .intro-card p {
   color: #2d3748 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .about .education-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1) !important;
+}
+
+[data-theme="light"] .about .education-item {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-left: 4px solid #8b5cf6 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08) !important;
+}
+
+[data-theme="light"] .about .certificates-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1) !important;
+}
+
+[data-theme="light"] .about .languages-section,
+[data-theme="light"] .about .interests-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1) !important;
+}
+
+[data-theme="light"] .about .certificate-item {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08) !important;
+}
+
+[data-theme="light"] .about .language-item,
+[data-theme="light"] .about .interest-item {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(79, 70, 229, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08) !important;
 }
 
 [data-theme="light"] .about .education-content h4 {
@@ -506,6 +563,7 @@
 
 [data-theme="light"] .about .degree {
   color: #1a202c !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .about .period {
@@ -514,6 +572,7 @@
 
 [data-theme="light"] .about .description {
   color: #2d3748 !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .about .certificate-icon {
@@ -522,14 +581,17 @@
 
 [data-theme="light"] .about .certificate-item span {
   color: #2d3748 !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .about .language-name {
   color: #1a202c !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .about .language-level {
   color: #4a5568 !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .about .interest-icon {
@@ -538,4 +600,5 @@
 
 [data-theme="light"] .about .interest-item span {
   color: #2d3748 !important;
+  opacity: 1 !important;
 }

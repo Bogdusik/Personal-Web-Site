@@ -86,7 +86,7 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
@@ -98,6 +98,9 @@
   cursor: pointer;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  word-wrap: break-word;
+  min-width: 0;
 }
 
 .skill-card:hover {
@@ -111,6 +114,7 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  min-width: 0;
 }
 
 .skill-icon {
@@ -121,6 +125,11 @@
 .skill-name {
   font-size: 1.2rem;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 
 .skill-level {

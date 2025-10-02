@@ -1,38 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaDownload, FaCode, FaRocket } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload, FaRocket } from 'react-icons/fa';
 import { ReactTyped } from 'react-typed';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
 
+  const handleMouseMove = useCallback((e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    setScrollY(window.scrollY);
+  }, []);
+
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleMouseMove, handleScroll]);
 
-  const skills = [
+  const skills = useMemo(() => [
     'Full-Stack Developer',
     'React Specialist',
     'Spring Boot Expert',
     'Cyber Security Analyst',
     'Problem Solver'
-  ];
+  ], []);
+
+  const handleProjectsClick = useCallback(() => {
+    const element = document.getElementById('projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
+  const handleCVDownload = useCallback(() => {
+    try {
+      // Первый способ - прямое скачивание
+      const link = document.createElement('a');
+      link.href = '/CV Bohdan Bozhenko.pdf';
+      link.download = 'CV Bohdan Bozhenko.pdf';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      
+      // Добавляем в DOM для совместимости с некоторыми браузерами
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Fallback - если скачивание не сработало, открываем в новой вкладке
+      setTimeout(() => {
+        window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+      }, 100);
+      
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      // Резервный вариант - открыть в новой вкладке
+      window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+    }
+  }, []);
+
+  const handleScrollClick = useCallback(() => {
+    const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <section id="hero" className="hero">
@@ -114,12 +154,7 @@ const Hero = () => {
               className="btn btn-primary"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                const element = document.getElementById('projects');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={handleProjectsClick}
             >
               <FaRocket className="btn-icon" />
               View My Work
@@ -129,13 +164,7 @@ const Hero = () => {
               className="btn btn-secondary"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                // Simulate CV download
-                const link = document.createElement('a');
-                link.href = '/cv.pdf';
-                link.download = 'Bohdan_CV.pdf';
-                link.click();
-              }}
+              onClick={handleCVDownload}
             >
               <FaDownload className="btn-icon" />
               Download CV
@@ -157,15 +186,15 @@ const Hero = () => {
             >
               <FaGithub />
             </motion.a>
-            <motion.a
-              href="https://linkedin.com/in/bohdan-developer"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaLinkedin />
-            </motion.a>
+                   <motion.a
+                     href="https://www.linkedin.com/in/bohdan-bozhenko/"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     whileHover={{ scale: 1.2, rotate: 5 }}
+                     whileTap={{ scale: 0.9 }}
+                   >
+                     <FaLinkedin />
+                   </motion.a>
           </motion.div>
         </motion.div>
 
@@ -217,12 +246,7 @@ const Hero = () => {
           y: scrollY > 50 ? 20 : 0
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        onClick={() => {
-          const element = document.getElementById('about');
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
+        onClick={handleScrollClick}
         style={{ 
           cursor: 'pointer',
           pointerEvents: scrollY > 50 ? 'none' : 'auto'
@@ -244,6 +268,8 @@ const Hero = () => {
       </motion.div>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

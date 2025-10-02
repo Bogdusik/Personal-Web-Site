@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="og-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="50%" style="stop-color:#764ba2"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#og-gradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="530" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1050" cy="150" r="30" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="150" cy="500" r="40" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Main content -->
+  <text x="600" y="250" font-family="Arial, sans-serif" font-size="80" font-weight="bold" 
+        text-anchor="middle" fill="white">Bohdan</text>
+  <text x="600" y="330" font-family="Arial, sans-serif" font-size="48" font-weight="normal" 
+        text-anchor="middle" fill="rgba(255,255,255,0.9)">Full-Stack Developer</text>
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="32" font-weight="normal" 
+        text-anchor="middle" fill="rgba(255,255,255,0.8)">React • Spring Boot • Cyber Security</text>
+  
+  <!-- Logo -->
+  <circle cx="600" cy="500" r="60" fill="rgba(255,255,255,0.2)"/>
+  <text x="600" y="530" font-family="Arial, sans-serif" font-size="60" font-weight="bold" 
+        text-anchor="middle" fill="white">B</text>
+</svg>
