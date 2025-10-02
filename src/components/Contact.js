@@ -79,8 +79,8 @@ const Contact = () => {
     {
       icon: FaLinkedin,
       title: 'LinkedIn',
-      value: 'linkedin.com/in/bohdan-developer',
-      link: 'https://linkedin.com/in/bohdan-developer',
+      value: 'linkedin.com/in/bohdan-bozhenko',
+      link: 'https://www.linkedin.com/in/bohdan-bozhenko/',
       color: '#0077b5'
     },
     {
@@ -315,7 +315,7 @@ const Contact = () => {
             <a href="https://github.com/Bogdusik" target="_blank" rel="noopener noreferrer">
               <FaGithub />
             </a>
-            <a href="https://linkedin.com/in/bohdan-developer" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/bohdan-bozhenko/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
             <a href="mailto:bogdyn6@gmail.com">
