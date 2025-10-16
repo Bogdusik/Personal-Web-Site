@@ -1,6 +1,6 @@
 # Bohdan's Interactive Portfolio
 
-A modern, interactive portfolio website showcasing technical skills, projects, and achievements. This website features smooth animations, particle effects, and an interactive coding challenge to demonstrate programming abilities.
+A modern, interactive portfolio website showcasing technical skills, projects and achievements. This website features smooth animations, particle effects and an interactive coding challenge to demonstrate programming abilities.
 
 ## 🌟 About This Website
 
@@ -28,28 +28,6 @@ This portfolio website was created to showcase my skills as a Computing student 
 - **Algorithm Challenges**: Solve programming problems with multiple difficulty levels
 - **Performance Metrics**: Track WPM, accuracy, and coding proficiency
 - **Skill Visualization**: Dynamic progress bars and interactive skill categories
-
-## 🎯 Purpose & Goals
-
-This portfolio serves multiple purposes:
-
-### For Employers
-- **Technical Skills Demonstration**: Shows proficiency in modern web technologies
-- **Problem-Solving Ability**: Interactive coding challenges prove analytical thinking
-- **Attention to Detail**: Smooth animations and responsive design show quality focus
-- **Continuous Learning**: Regular updates and improvements demonstrate growth mindset
-
-### For Networking
-- **Professional Presentation**: Clean, modern design creates strong first impression
-- **Easy Contact**: Multiple ways to reach out and start conversations
-- **Project Showcase**: Detailed examples of completed work and technologies used
-- **Skill Assessment**: Interactive elements allow visitors to test capabilities
-
-### For Personal Development
-- **Portfolio Evolution**: Regular updates track learning and skill development
-- **Technology Practice**: Building and maintaining the site improves technical skills
-- **Creative Expression**: Design and animations showcase creative problem-solving
-- **Professional Branding**: Establishes online presence and personal brand
 
 ## 🛠️ Technologies Showcased
 
@@ -145,6 +123,6 @@ This portfolio is designed to facilitate connections and opportunities:
 
 ---
 
-**Built with ❤️ by Bohdan - A passionate Computing student ready to make an impact in the tech industry.**
+**Built with ❤️ by Bohdan.**
 
 *This portfolio represents not just a collection of projects, but a journey of learning, growth, and passion for technology. Every line of code, every animation, and every interaction is crafted with care to demonstrate both technical skills and creative vision.*
