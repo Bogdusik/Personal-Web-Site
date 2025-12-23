@@ -117,27 +117,39 @@
   font-weight: 500;
 }
 
-.cv-download {
+.cv-request {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgba(79, 70, 229, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
   text-align: center;
 }
 
-.download-btn {
-  display: inline-flex;
+.cv-request-content {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(45deg, #4f46e5, #8b5cf6);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+  gap: 1rem;
 }
 
-.download-btn:hover {
-  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
-  transform: translateY(-2px);
+.cv-request-icon {
+  font-size: 2rem;
+  color: #8b5cf6;
+  margin-bottom: 0.5rem;
+}
+
+.cv-request-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  max-width: 100%;
+}
+
+.cv-request-text strong {
+  color: #8b5cf6;
+  font-weight: 600;
 }
 
 .skills-grid {
@@ -401,9 +413,18 @@
     font-size: 0.95rem;
   }
   
-  .download-btn {
-    padding: 0.8rem 1.5rem;
+  .cv-request {
+    padding: 1.2rem;
+    margin-top: 0.8rem;
+  }
+  
+  .cv-request-icon {
+    font-size: 1.5rem;
+  }
+  
+  .cv-request-text {
     font-size: 0.95rem;
+    line-height: 1.5;
   }
   
   .skills-card h3 {
@@ -547,9 +568,18 @@
     font-weight: 600;
   }
   
-  .download-btn {
-    padding: 0.7rem 1.2rem;
+  .cv-request {
+    padding: 1rem;
+    margin-top: 0.6rem;
+  }
+  
+  .cv-request-icon {
+    font-size: 1.3rem;
+  }
+  
+  .cv-request-text {
     font-size: 0.9rem;
+    line-height: 1.4;
   }
   
   .skills-grid {
@@ -827,4 +857,23 @@
 [data-theme="light"] .contact .form-group textarea::placeholder {
   color: rgba(26, 32, 44, 0.6) !important;
   font-weight: 400 !important;
+}
+
+/* Light theme styles for CV request */
+[data-theme="light"] .contact .cv-request {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .contact .cv-request-icon {
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .contact .cv-request-text {
+  color: #2d3748 !important;
+}
+
+[data-theme="light"] .contact .cv-request-text strong {
+  color: #4f46e5 !important;
 }
