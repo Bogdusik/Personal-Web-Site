@@ -139,9 +139,9 @@ const Hero = React.memo(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            A passionate Computing student with expertise in full-stack development, 
-            cybersecurity, and creating innovative solutions. Ready to bring fresh 
-            ideas and technical excellence to your team.
+            A motivated Computing student focused on full-stack and AI-powered products. 
+            Blending React/Next.js, Spring Boot, and secure engineering to ship responsive, 
+            production-ready experiences that help people learn and communicate better.
           </motion.p>
 
           <motion.div

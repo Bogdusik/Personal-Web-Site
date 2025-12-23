@@ -13,6 +13,42 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: 'Programming Helper AI',
+      category: 'AI-powered Learning Platform',
+      description: 'AI assistant for learning and practicing coding with guided explanations, code suggestions, and progress tracking.',
+      longDescription: 'Built an AI-powered web app that helps learners understand programming concepts faster through real-time explanations, contextual code suggestions, and structured practice tasks. Designed a scalable Next.js architecture with secure authentication and analytics to keep users engaged.',
+      technologies: [
+        { name: 'Next.js', icon: FaReact, color: '#61dafb' },
+        { name: 'TypeScript', icon: FaJs, color: '#3178c6' },
+        { name: 'Tailwind CSS', icon: FaCode, color: '#38bdf8' },
+        { name: 'OpenAI API', icon: FaRocket, color: '#8b5cf6' }
+      ],
+      features: [
+        'AI chat with real-time code explanations',
+        'Guided tasks with hints and solutions',
+        'Progress tracking and analytics',
+        'Secure authentication with Clerk',
+        'Responsive UI with Tailwind and Framer Motion',
+        'Deployment-ready on Vercel'
+      ],
+      challenges: [
+        'Balancing API cost with latency for AI calls',
+        'Keeping context relevant across chat sessions',
+        'Designing UI that works across devices'
+      ],
+      solutions: [
+        'Implemented request throttling and caching',
+        'Conversation state managed per session with guards',
+        'Responsive layout with reusable components and motion'
+      ],
+      github: 'https://github.com/bogdusik/programming-helper-ai',
+      demo: 'https://programming-helper-ai.vercel.app',
+      image: 'https://images.unsplash.com/photo-1537432376769-00a4c8399f66?w=800&h=520&fit=crop&crop=center',
+      complexity: 92,
+      duration: '4 months'
+    },
+    {
+      id: 2,
       title: 'Real-time Chat Application',
       category: 'Full-Stack Development',
       description: 'A comprehensive chat application built with Spring Boot and React, featuring real-time messaging, user authentication, and responsive design.',
@@ -50,8 +86,8 @@ const Projects = () => {
       duration: '3 months'
     },
     {
-      id: 2,
-      title: 'CryptoChatTApp',
+      id: 3,
+      title: 'CryptoChartApp',
       category: 'Desktop Application',
       description: 'A desktop application for real-time cryptocurrency price tracking and visualization using Java and external APIs.',
       longDescription: 'Created a desktop application to retrieve and visualize real-time cryptocurrency prices using interactive charts. The application demonstrates skills in external API integration, data processing, and desktop application development with Java.',
@@ -85,43 +121,6 @@ const Projects = () => {
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop&crop=center',
       complexity: 80,
       duration: '2 months'
-    },
-    {
-      id: 3,
-      title: 'CoderType - Speed Typing Game',
-      category: 'Web Game',
-      description: 'An interactive web-based typing game designed to improve coding speed and accuracy with performance metrics.',
-      longDescription: 'Engineered an interactive game to improve coding speed and accuracy, featuring a timer, performance metrics (accuracy, speed), and replay functionality. Built with vanilla JavaScript for optimal performance.',
-      technologies: [
-        { name: 'JavaScript', icon: FaJs, color: '#f7df1e' },
-        { name: 'HTML5', icon: FaCode, color: '#e34f26' },
-        { name: 'CSS3', icon: FaCode, color: '#1572b6' }
-      ],
-      features: [
-        'Real-time typing speed calculation',
-        'Accuracy percentage tracking',
-        'Timer and countdown functionality',
-        'Performance statistics',
-        'Replay and restart options',
-        'Responsive design'
-      ],
-      challenges: [
-        'Real-time keystroke tracking',
-        'Performance metric calculations',
-        'Smooth animations and transitions',
-        'Cross-browser compatibility'
-      ],
-      solutions: [
-        'Used event listeners for keystroke tracking',
-        'Implemented efficient calculation algorithms',
-        'CSS animations for smooth transitions',
-        'Tested across multiple browsers'
-      ],
-      github: 'https://github.com/Bogdusik/CoderType',
-      demo: 'https://coder-type-bogdus1k.vercel.app',
-      image: 'https://coder-type-bogdus1k.vercel.app',
-      complexity: 75,
-      duration: '1 month'
     }
   ];
 
