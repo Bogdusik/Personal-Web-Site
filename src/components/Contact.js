@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { 
   FaEnvelope, FaMapMarkerAlt, FaLinkedin, 
-  FaGithub, FaDownload, FaPaperPlane, FaCheck, FaTimes
+  FaGithub, FaPaperPlane, FaCheck, FaTimes
 } from 'react-icons/fa';
 import './Contact.css';
 
@@ -161,15 +161,18 @@ const Contact = () => {
               </div>
 
               <motion.div
-                className="cv-download"
+                className="cv-request"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.8 }}
               >
-                <a href="/cv.pdf" download className="download-btn">
-                  <FaDownload />
-                  Download CV
-                </a>
+                <div className="cv-request-content">
+                  <FaEnvelope className="cv-request-icon" />
+                  <p className="cv-request-text">
+                    Need my CV? Simply request it through the contact form on the right, 
+                    and I'll send it to you promptly.
+                  </p>
+                </div>
               </motion.div>
             </div>
 
