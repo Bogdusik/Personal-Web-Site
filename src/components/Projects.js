@@ -44,6 +44,7 @@ const Projects = () => {
       github: 'https://github.com/bogdusik/programming-helper-ai',
       demo: 'https://programming-helper-ai.vercel.app',
       image: 'https://images.unsplash.com/photo-1537432376769-00a4c8399f66?w=800&h=520&fit=crop&crop=center',
+      iframeUrl: 'https://programming-helper-ai.vercel.app',
       complexity: 92,
       duration: '4 months'
     },
@@ -293,9 +294,24 @@ const Projects = () => {
                       src="https://programming-helper-ai.vercel.app"
                       className="project-iframe"
                       title="Programming Helper AI"
+                      allow="fullscreen"
+                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+                      loading="lazy"
+                      onLoad={(e) => {
+                        // Показываем iframe после загрузки
+                        e.target.style.opacity = '1';
+                      }}
                       onError={(e) => {
                         e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
+                        const placeholder = e.target.nextElementSibling;
+                        if (placeholder) {
+                          placeholder.style.display = 'flex';
+                        }
+                      }}
+                      style={{ 
+                        opacity: 0,
+                        transition: 'opacity 0.5s ease-in-out',
+                        backgroundColor: '#ffffff'
                       }}
                     />
                   ) : projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
