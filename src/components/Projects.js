@@ -288,7 +288,17 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <div className="project-image">
-                  {projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
+                  {projects[activeProject].title === 'Programming Helper AI' ? (
+                    <iframe
+                      src="https://programming-helper-ai.vercel.app"
+                      className="project-iframe"
+                      title="Programming Helper AI"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
                     <iframe
                       src="https://coder-type-bogdus1k.vercel.app"
                       className="project-iframe"
