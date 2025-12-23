@@ -41,29 +41,39 @@ const Hero = React.memo(() => {
     }
   }, []);
 
-  const handleCVDownload = useCallback(() => {
+  const handleCVDownload = useCallback(async () => {
     try {
-      // Первый способ - прямое скачивание
+      const cvPath = '/CV Bohdan Bozhenko.pdf';
+      const cvFileName = 'CV-Bohdan-Bozhenko.pdf';
+      
+      // Используем fetch для загрузки файла как blob
+      const response = await fetch(cvPath);
+      if (!response.ok) {
+        throw new Error('Failed to fetch CV');
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      // Создаем ссылку для скачивания
       const link = document.createElement('a');
-      link.href = '/CV-Bohdan-Bozhenko.pdf';
-      link.download = 'CV-Bohdan-Bozhenko.pdf';
+      link.href = url;
+      link.download = cvFileName;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       
-      // Добавляем в DOM для совместимости с некоторыми браузерами
+      // Добавляем в DOM и кликаем
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
       
-      // Fallback - если скачивание не сработало, открываем в новой вкладке
-      setTimeout(() => {
-        window.open('/CV-Bohdan-Bozhenko.pdf', '_blank', 'noopener,noreferrer');
-      }, 100);
+      // Очищаем
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
       
     } catch (error) {
       console.error('Error downloading CV:', error);
-      // Резервный вариант - открыть в новой вкладке
-      window.open('/CV-Bohdan-Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+      // Fallback - открываем в новой вкладке
+      window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
     }
   }, []);
 
