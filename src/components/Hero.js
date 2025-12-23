@@ -43,37 +43,87 @@ const Hero = React.memo(() => {
 
   const handleCVDownload = useCallback(async () => {
     try {
-      const cvPath = '/CV Bohdan Bozhenko.pdf';
+      // Используем правильный путь к файлу в public папке
+      // В production файлы из public доступны напрямую
       const cvFileName = 'CV-Bohdan-Bozhenko.pdf';
       
-      // Используем fetch для загрузки файла как blob
-      const response = await fetch(cvPath);
-      if (!response.ok) {
-        throw new Error('Failed to fetch CV');
+      // Пробуем несколько вариантов путей
+      const possiblePaths = [
+        '/CV%20Bohdan%20Bozhenko.pdf',
+        '/CV Bohdan Bozhenko.pdf',
+        `${process.env.PUBLIC_URL || ''}/CV%20Bohdan%20Bozhenko.pdf`,
+        `${process.env.PUBLIC_URL || ''}/CV Bohdan Bozhenko.pdf`
+      ];
+      
+      let blob = null;
+      let success = false;
+      
+      for (const cvPath of possiblePaths) {
+        try {
+          const response = await fetch(cvPath, {
+            method: 'GET',
+            cache: 'no-cache'
+          });
+          
+          if (!response.ok) continue;
+          
+          const contentType = response.headers.get('content-type') || '';
+          
+          // Проверяем, что это PDF, а не HTML
+          if (contentType.includes('html') || contentType.includes('text')) {
+            continue;
+          }
+          
+          blob = await response.blob();
+          
+          // Проверяем размер - PDF обычно больше 1KB
+          if (blob.size < 1000) {
+            continue;
+          }
+          
+          // Проверяем первые байты - PDF начинается с %PDF
+          const arrayBuffer = await blob.slice(0, 4).arrayBuffer();
+          const uint8Array = new Uint8Array(arrayBuffer);
+          const firstBytes = String.fromCharCode(...uint8Array);
+          
+          if (firstBytes.startsWith('%PDF')) {
+            success = true;
+            break;
+          }
+        } catch (err) {
+          continue;
+        }
       }
       
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+      if (!success || !blob) {
+        throw new Error('Could not fetch valid PDF file');
+      }
       
-      // Создаем ссылку для скачивания
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = cvFileName;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      link.style.display = 'none';
       
-      // Добавляем в DOM и кликаем
       document.body.appendChild(link);
       link.click();
       
-      // Очищаем
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }, 100);
       
     } catch (error) {
       console.error('Error downloading CV:', error);
-      // Fallback - открываем в новой вкладке
-      window.open('/CV Bohdan Bozhenko.pdf', '_blank', 'noopener,noreferrer');
+      // Fallback - прямая ссылка на файл
+      const link = document.createElement('a');
+      link.href = '/CV%20Bohdan%20Bozhenko.pdf';
+      link.download = 'CV-Bohdan-Bozhenko.pdf';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => document.body.removeChild(link), 100);
     }
   }, []);
 
