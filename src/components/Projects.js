@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaGithub, FaExternalLinkAlt, FaCode, FaDatabase, 
@@ -9,10 +9,6 @@ import './Projects.css';
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(0);
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [iframeError, setIframeError] = useState(false);
-  const iframeRef = useRef(null);
-  const timeoutRef = useRef(null);
 
   const projects = [
     {
@@ -47,7 +43,7 @@ const Projects = () => {
       ],
       github: 'https://github.com/bogdusik/programming-helper-ai',
       demo: 'https://programming-helper-ai.vercel.app',
-      image: 'https://images.unsplash.com/photo-1537432376769-00a4c8399f66?w=800&h=520&fit=crop&crop=center',
+      image: '/images/projects/programming-helper-ai.png',
       complexity: 92,
       duration: '4 months'
     },
@@ -149,28 +145,6 @@ const Projects = () => {
     }
   ];
 
-  // Reset iframe state when project changes
-  useEffect(() => {
-    setIframeLoaded(false);
-    setIframeError(false);
-    
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // Set timeout to detect if iframe fails to load within 3 seconds
-    if (projects[activeProject].title === 'Programming Helper AI') {
-      timeoutRef.current = setTimeout(() => {
-        setIframeError(true);
-      }, 3000);
-    }
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [activeProject]);
 
   return (
     <section id="projects" className="projects">
@@ -315,38 +289,7 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <div className="project-image">
-                  {projects[activeProject].title === 'Programming Helper AI' && !iframeError ? (
-                    <>
-                      <iframe
-                        ref={iframeRef}
-                        src="https://programming-helper-ai.vercel.app"
-                        className="project-iframe"
-                        title="Programming Helper AI"
-                        allow="fullscreen"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-                        loading="lazy"
-                        onLoad={(e) => {
-                          if (timeoutRef.current) {
-                            clearTimeout(timeoutRef.current);
-                          }
-                          setIframeLoaded(true);
-                          e.target.style.opacity = '1';
-                        }}
-                        style={{ 
-                          opacity: iframeLoaded ? 1 : 0,
-                          transition: 'opacity 0.5s ease-in-out',
-                          backgroundColor: '#ffffff',
-                          display: iframeError ? 'none' : 'block'
-                        }}
-                      />
-                      {!iframeLoaded && !iframeError && (
-                        <div className="image-placeholder" style={{ display: 'flex' }}>
-                          <div className="loading-spinner"></div>
-                          <span>Loading preview...</span>
-                        </div>
-                      )}
-                    </>
-                  ) : projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
+                  {projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
                     <iframe
                       src="https://coder-type-bogdus1k.vercel.app"
                       className="project-iframe"
