@@ -218,7 +218,7 @@
   }
 }
 
-/* Дополнительная оптимизация для очень маленьких экранов */
+/* Additional optimization for very small screens */
 @media (max-width: 360px) {
   .header-content {
     padding: 0.5rem;

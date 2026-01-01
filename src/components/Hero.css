@@ -447,7 +447,7 @@
   }
 }
 
-/* Дополнительная оптимизация для очень маленьких экранов */
+/* Additional optimization for very small screens */
 @media (max-width: 360px) {
   .hero {
     padding: 0.8rem;
