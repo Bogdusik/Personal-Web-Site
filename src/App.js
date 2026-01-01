@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { useSwipeToNavigate } from './hooks/useSwipeNavigation';
+import { SCROLL_OFFSET } from './utils/constants';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ParticleBackground from './components/ParticleBackground';
@@ -22,7 +23,7 @@ const App = React.memo(() => {
   const swipeHandlers = useSwipeToNavigate(sections, currentSection, setCurrentSection);
 
   const handleScroll = useCallback(() => {
-    const scrollPosition = window.scrollY + 200;
+    const scrollPosition = window.scrollY + SCROLL_OFFSET;
 
     for (let i = 0; i < sections.length; i++) {
       const element = document.getElementById(sections[i]);

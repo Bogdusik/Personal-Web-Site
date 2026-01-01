@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
+import { PARTICLE_CONFIG } from '../utils/constants';
 import './ParticleBackground.css';
 
 const ParticleBackground = React.memo(() => {
@@ -18,15 +19,17 @@ const ParticleBackground = React.memo(() => {
     if (!canvas) return;
     
     particlesRef.current = [];
-    // Reduce particle count for better performance
-    const particleCount = Math.min(25, Math.floor((canvas.width * canvas.height) / 25000));
+    const particleCount = Math.min(
+      PARTICLE_CONFIG.MAX_COUNT, 
+      Math.floor((canvas.width * canvas.height) / PARTICLE_CONFIG.DENSITY_DIVISOR)
+    );
     
     for (let i = 0; i < particleCount; i++) {
       particlesRef.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
+        vx: (Math.random() - 0.5) * PARTICLE_CONFIG.VELOCITY_RANGE,
+        vy: (Math.random() - 0.5) * PARTICLE_CONFIG.VELOCITY_RANGE,
         radius: Math.random() * 1.5 + 0.5,
         opacity: Math.random() * 0.3 + 0.1
       });
@@ -69,9 +72,9 @@ const ParticleBackground = React.memo(() => {
         const dy = particles[i].y - particles[j].y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 80) {
+        if (distance < PARTICLE_CONFIG.CONNECTION_DISTANCE) {
           ctx.save();
-          ctx.globalAlpha = (80 - distance) / 80 * 0.1;
+          ctx.globalAlpha = (PARTICLE_CONFIG.CONNECTION_DISTANCE - distance) / PARTICLE_CONFIG.CONNECTION_DISTANCE * 0.1;
           ctx.strokeStyle = '#8b5cf6';
           ctx.lineWidth = 0.5;
           ctx.beginPath();
@@ -91,12 +94,15 @@ const ParticleBackground = React.memo(() => {
     initParticles();
     animate();
 
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('resize', initParticles);
+    const handleResize = () => {
+      resizeCanvas();
+      initParticles();
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('resize', initParticles);
+      window.removeEventListener('resize', handleResize);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
