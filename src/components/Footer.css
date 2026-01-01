@@ -387,7 +387,7 @@
   }
 }
 
-/* Дополнительная оптимизация для очень маленьких экранов */
+/* Additional optimization for very small screens */
 @media (max-width: 360px) {
   .footer {
     padding: 1.5rem 0.8rem 1rem;
@@ -527,7 +527,7 @@
   }
 }
 
-/* Дополнительная оптимизация для очень маленьких экранов */
+/* Additional optimization for very small screens */
 @media (max-width: 360px) {
   .footer {
     padding: 1.5rem 0.8rem 1rem;
