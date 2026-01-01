@@ -7,7 +7,7 @@ import {
 import './InteractiveDemo.css';
 
 const InteractiveDemo = () => {
-  const [gameState, setGameState] = useState('menu'); // menu, playing, finished
+  const [gameState, setGameState] = useState('menu');
   const [currentCode, setCurrentCode] = useState('');
   const [targetCode, setTargetCode] = useState('');
   const [timeLeft, setTimeLeft] = useState(60);

@@ -644,7 +644,7 @@
   }
 }
 
-/* Дополнительная оптимизация для очень маленьких экранов */
+/* Additional optimization for very small screens */
 @media (max-width: 360px) {
   .contact {
     padding: 3rem 0.8rem 1.5rem;

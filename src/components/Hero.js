@@ -43,11 +43,9 @@ const Hero = React.memo(() => {
 
   const handleCVDownload = useCallback(async () => {
     try {
-      // Используем правильный путь к файлу в public папке
-      // В production файлы из public доступны напрямую
       const cvFileName = 'CV-Bohdan-Bozhenko.pdf';
       
-      // Пробуем несколько вариантов путей
+      // Try multiple path variations
       const possiblePaths = [
         '/CV%20Bohdan%20Bozhenko.pdf',
         '/CV Bohdan Bozhenko.pdf',
@@ -69,19 +67,19 @@ const Hero = React.memo(() => {
           
           const contentType = response.headers.get('content-type') || '';
           
-          // Проверяем, что это PDF, а не HTML
+          // Verify it's a PDF file, not HTML
           if (contentType.includes('html') || contentType.includes('text')) {
             continue;
           }
           
           blob = await response.blob();
           
-          // Проверяем размер - PDF обычно больше 1KB
+          // Check size - PDF files are typically larger than 1KB
           if (blob.size < 1000) {
             continue;
           }
           
-          // Проверяем первые байты - PDF начинается с %PDF
+          // Verify PDF signature - PDF files start with %PDF
           const arrayBuffer = await blob.slice(0, 4).arrayBuffer();
           const uint8Array = new Uint8Array(arrayBuffer);
           const firstBytes = String.fromCharCode(...uint8Array);
@@ -115,7 +113,7 @@ const Hero = React.memo(() => {
       
     } catch (error) {
       console.error('Error downloading CV:', error);
-      // Fallback - прямая ссылка на файл
+      // Fallback - direct link to file
       const link = document.createElement('a');
       link.href = '/CV%20Bohdan%20Bozhenko.pdf';
       link.download = 'CV-Bohdan-Bozhenko.pdf';
