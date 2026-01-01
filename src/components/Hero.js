@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaDownload, FaRocket } from 'react-icons/fa';
 import { ReactTyped } from 'react-typed';
+import { PDF_MIN_SIZE } from '../utils/constants';
 import './Hero.css';
 
 const Hero = React.memo(() => {
@@ -74,8 +75,7 @@ const Hero = React.memo(() => {
           
           blob = await response.blob();
           
-          // Check size - PDF files are typically larger than 1KB
-          if (blob.size < 1000) {
+          if (blob.size < PDF_MIN_SIZE) {
             continue;
           }
           

@@ -30,10 +30,9 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration
-      const serviceId = 'service_zr8w9kr';
-      const templateId = 'template_ng659f8';
-      const publicKey = '9TIu-O2DZmqn2K4xe';
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_zr8w9kr';
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_ng659f8';
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '9TIu-O2DZmqn2K4xe';
 
       const templateParams = {
         from_name: formData.name,
@@ -56,7 +55,6 @@ const Contact = () => {
     } finally {
       setIsSubmitting(false);
       
-      // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
