@@ -1,128 +1,98 @@
-# Bohdan's Interactive Portfolio
+# Personal Web Site
 
-A modern, interactive portfolio website showcasing technical skills, projects and achievements. This website features smooth animations, particle effects and an interactive coding challenge to demonstrate programming abilities.
+An interactive portfolio website showcasing technical skills, projects, and achievements. Features smooth animations, particle effects, and an interactive coding challenge to demonstrate programming abilities. Built with React to create an engaging user experience that combines technical skills with creative design.
 
-## 🌟 About This Website
+## Demo
 
-This portfolio website was created to showcase my skills as a Computing student and aspiring software developer. It combines modern web technologies with interactive elements to create an engaging user experience that demonstrates both technical and creative abilities.
+![Hero Section](screenshots/hero.png)
+![Projects Gallery](screenshots/projects.png)
+![Coding Challenge](screenshots/coding-challenge.png)
+![Skills Showcase](screenshots/skills.png)
 
-## 🚀 Key Features
+## Why It's Cool
 
-### Interactive Sections
-- **Hero Section**: Dynamic introduction with animated typing effects
-- **About Me**: Educational background, certificates, and personal journey
-- **Skills Showcase**: Interactive skill categories with visual progress indicators
-- **Project Gallery**: Detailed showcase of completed projects with complexity ratings
-- **Coding Challenge**: Interactive game to test programming skills in real-time
-- **Contact Form**: Easy way to get in touch and start conversations
+- **Interactive Particle System**: Dynamic particle background that responds to user mouse movement, creating an engaging visual experience
+- **Coding Challenge Game**: Real-time typing speed test with actual code snippets, algorithm challenges, and performance metrics (WPM, accuracy)
+- **Smooth Animations**: Professional 60fps animations powered by Framer Motion with scroll-triggered animations and micro-interactions
+- **Modern UI/UX**: Clean design with glass morphism effects, responsive layout, and intuitive navigation optimized for all devices
+- **Accessibility First**: Full keyboard navigation, screen reader support, high contrast ratios, and semantic HTML
+- **Performance Optimized**: Fast loading with code splitting, hardware-accelerated animations, and mobile-optimized performance
 
-### Visual Design
-- **Animated Particle Background**: Dynamic particle system that responds to user interaction
-- **Smooth Animations**: Professional transitions powered by modern animation libraries
-- **Responsive Design**: Optimized for all devices from mobile to desktop
-- **Modern UI/UX**: Clean, professional design with glass morphism effects
-- **Interactive Elements**: Hover effects, scroll animations, and engaging micro-interactions
+## Tech Stack
 
-### Technical Demonstration
-- **Real-time Coding Game**: Test typing speed and accuracy with actual code snippets
-- **Algorithm Challenges**: Solve programming problems with multiple difficulty levels
-- **Performance Metrics**: Track WPM, accuracy, and coding proficiency
-- **Skill Visualization**: Dynamic progress bars and interactive skill categories
+- **Frontend**: React, JavaScript ES6+, HTML5, CSS3
+- **Animation**: Framer Motion, Canvas API, CSS Animations
+- **Styling**: Custom CSS with responsive design, glass morphism effects
+- **Deployment**: Vercel
 
-## 🛠️ Technologies Showcased
+## How to Run Locally
 
-### Frontend Development
-- **React**: Modern component-based architecture
-- **JavaScript ES6+**: Advanced JavaScript features and best practices
-- **CSS3**: Advanced styling with animations and responsive design
-- **HTML5**: Semantic markup and accessibility features
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Bogdusik/Personal-Web-Site.git
+   cd Personal-Web-Site
+   ```
 
-### Animation & Interaction
-- **Framer Motion**: Professional animation library for smooth transitions
-- **Canvas API**: Custom particle system and interactive graphics
-- **CSS Animations**: Performance-optimized animations and transitions
-- **Responsive Design**: Mobile-first approach with breakpoint optimization
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### Development Practices
-- **Version Control**: Git workflow and collaborative development
-- **Code Organization**: Modular component structure and best practices
-- **Performance Optimization**: Efficient rendering and smooth 60fps animations
-- **Cross-Browser Compatibility**: Testing and optimization for all major browsers
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
+   Application will be available at `http://localhost:3000`
 
-## 📱 User Experience
+   **Alternative (using script):**
+   ```bash
+   ./start-dev.sh
+   ```
 
-### Desktop Experience
-- **Full-Featured Interface**: Complete portfolio with all interactive elements
-- **Smooth Animations**: 60fps animations and transitions
-- **Keyboard Navigation**: Full keyboard accessibility and shortcuts
-- **Large Screen Optimization**: Content optimized for desktop viewing
+> **Note**: This is a frontend-only application. No backend or database setup required.
 
-### Mobile Experience
-- **Touch-Friendly Design**: Optimized for touch interactions
-- **Responsive Layout**: Content adapts perfectly to all screen sizes
-- **Performance Optimized**: Fast loading and smooth scrolling on mobile devices
-- **Intuitive Navigation**: Easy-to-use mobile interface
+## Project Structure
 
-## 🎮 Interactive Elements
+```
+Personal-Web-Site/
+├── src/
+│   ├── components/              # React Components
+│   │   ├── Header.js           # Navigation header
+│   │   ├── Hero.js             # Hero section with typing animation
+│   │   ├── About.js             # About section
+│   │   ├── Skills.js            # Skills showcase
+│   │   ├── Projects.js          # Projects gallery
+│   │   ├── InteractiveDemo.js   # Coding challenge game
+│   │   ├── Contact.js            # Contact form
+│   │   ├── Footer.js            # Footer component
+│   │   ├── ParticleBackground.js # Particle system
+│   │   └── ThemeToggle.js       # Dark/light theme toggle
+│   ├── contexts/                # React Contexts
+│   │   └── ThemeContext.js      # Theme management
+│   ├── hooks/                   # Custom Hooks
+│   │   └── useSwipeNavigation.js
+│   ├── utils/                   # Utilities
+│   │   └── constants.js         # App constants
+│   ├── App.js                   # Main app component
+│   └── index.js                 # Entry point
+│
+├── public/                      # Static Assets
+│   ├── images/                  # Images and assets
+│   ├── logo.svg                 # Logo
+│   └── index.html               # HTML template
+│
+└── [config files]               # Configuration files
+    ├── package.json
+    └── .vercelignore
+```
 
-### Coding Challenge Game
-- **Speed Typing Test**: Real-time code typing with accuracy tracking
-- **Algorithm Problems**: Solve programming challenges with multiple difficulty levels
-- **Performance Metrics**: Track WPM, accuracy, errors, and overall score
-- **Skill Assessment**: Get rated from Beginner to Expert based on performance
+## What I Learned
 
-### Visual Interactions
-- **Particle System**: Interactive background that responds to mouse movement
-- **Hover Effects**: Engaging micro-interactions throughout the site
-- **Scroll Animations**: Elements animate as they come into view
-- **Loading States**: Smooth transitions and engaging loading animations
+- **Advanced React Patterns**: Built complex interactive components using React hooks, context API, and component composition
+- **Animation Libraries**: Implemented smooth animations with Framer Motion, creating engaging user experiences with scroll-triggered animations
+- **Canvas API**: Created custom particle system using HTML5 Canvas API with real-time mouse interaction and performance optimization
+- **Responsive Design**: Designed mobile-first responsive layout with breakpoint optimization and touch-friendly interactions
+- **Accessibility**: Implemented full keyboard navigation, ARIA labels, and semantic HTML for inclusive user experience
+- **Performance Optimization**: Optimized rendering with code splitting, lazy loading, and hardware-accelerated animations for 60fps performance
 
-## 🌐 Accessibility & Performance
-
-### Accessibility Features
-- **Keyboard Navigation**: Full site navigation using only keyboard
-- **Screen Reader Support**: Semantic HTML and ARIA labels for assistive technologies
-- **Color Contrast**: High contrast ratios for better readability
-- **Focus Management**: Clear focus indicators and logical tab order
-
-### Performance Optimization
-- **Fast Loading**: Optimized images and efficient code splitting
-- **Smooth Animations**: 60fps animations with hardware acceleration
-- **Mobile Performance**: Optimized for mobile devices and slower connections
-- **SEO Ready**: Structured data and meta tags for search engine optimization
-
-## 📞 Contact & Collaboration
-
-This portfolio is designed to facilitate connections and opportunities:
-
-### For Potential Employers
-- **Easy Contact**: Multiple ways to get in touch directly
-- **Project Details**: Comprehensive information about completed projects
-- **Skill Assessment**: Interactive elements to test technical abilities
-- **Professional Presentation**: Clean, modern design that reflects attention to detail
-
-### For Fellow Developers
-- **Code Examples**: Real-world examples of modern web development
-- **Best Practices**: Demonstration of current industry standards
-- **Learning Resources**: Interactive elements that can serve as learning tools
-- **Collaboration Opportunities**: Open to discussing projects and ideas
-
-## 🚀 Future Enhancements
-
-### Planned Updates
-- **Additional Projects**: Regular updates with new completed projects
-- **Skill Development**: Updates reflecting new technologies and skills learned
-- **Performance Improvements**: Ongoing optimization and enhancement
-- **Feature Additions**: New interactive elements and functionality
-
-### Continuous Improvement
-- **Regular Updates**: Portfolio evolves with skills and experience
-- **Technology Updates**: Staying current with latest web technologies
-- **User Feedback**: Incorporating feedback to improve user experience
-- **Professional Growth**: Portfolio grows alongside career development
-
----
-
-**Built with ❤️ by Bohdan.**
-
-*This portfolio represents not just a collection of projects, but a journey of learning, growth, and passion for technology. Every line of code, every animation, and every interaction is crafted with care to demonstrate both technical skills and creative vision.*
+Fork it, use it, improve it — open to PRs!
