@@ -95,4 +95,4 @@ Personal-Web-Site/
 - **Accessibility**: Implemented full keyboard navigation, ARIA labels, and semantic HTML for inclusive user experience
 - **Performance Optimization**: Optimized rendering with code splitting, lazy loading, and hardware-accelerated animations for 60fps performance
 
-Fork it, use it, improve it — open to PRs!
+Fork it, use it, improve it  open to PRs!
