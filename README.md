@@ -2,13 +2,6 @@
 
 An interactive portfolio website showcasing technical skills, projects, and achievements. Features smooth animations, particle effects, and an interactive coding challenge to demonstrate programming abilities. Built with React to create an engaging user experience that combines technical skills with creative design.
 
-## Demo
-
-![Hero Section](screenshots/hero.png)
-![Projects Gallery](screenshots/projects.png)
-![Coding Challenge](screenshots/coding-challenge.png)
-![Skills Showcase](screenshots/skills.png)
-
 ## Why It's Cool
 
 - **Interactive Particle System**: Dynamic particle background that responds to user mouse movement, creating an engaging visual experience
@@ -95,4 +88,4 @@ Personal-Web-Site/
 - **Accessibility**: Implemented full keyboard navigation, ARIA labels, and semantic HTML for inclusive user experience
 - **Performance Optimization**: Optimized rendering with code splitting, lazy loading, and hardware-accelerated animations for 60fps performance
 
-Fork it, use it, improve it — open to PRs!
+Fork it, use it, improve it  open to PRs!
