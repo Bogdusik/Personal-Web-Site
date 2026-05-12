@@ -30,9 +30,13 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_zr8w9kr';
-      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_ng659f8';
-      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '9TIu-O2DZmqn2K4xe';
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS environment variables are not configured');
+      }
 
       const templateParams = {
         from_name: formData.name,
@@ -133,27 +137,36 @@ const Contact = () => {
               <div className="contact-details">
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;
-                  return (
-                    <motion.a
-                      key={index}
-                      href={info.link}
-                      target={info.link ? '_blank' : undefined}
-                      rel={info.link ? 'noopener noreferrer' : undefined}
-                      className="contact-item"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                      whileHover={{ scale: 1.05, x: 10 }}
-                    >
-                      <Icon 
-                        className="contact-icon" 
-                        style={{ color: info.color }}
-                      />
+                  const motionProps = {
+                    key: index,
+                    className: "contact-item",
+                    initial: { opacity: 0, y: 20 },
+                    animate: { opacity: 1, y: 0 },
+                    transition: { duration: 0.4, delay: 0.4 + index * 0.1 },
+                    whileHover: { scale: 1.05, x: 10 }
+                  };
+                  const content = (
+                    <>
+                      <Icon className="contact-icon" style={{ color: info.color }} />
                       <div className="contact-text">
                         <span className="contact-title">{info.title}</span>
                         <span className="contact-value">{info.value}</span>
                       </div>
+                    </>
+                  );
+                  return info.link ? (
+                    <motion.a
+                      {...motionProps}
+                      href={info.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {content}
                     </motion.a>
+                  ) : (
+                    <motion.div {...motionProps}>
+                      {content}
+                    </motion.div>
                   );
                 })}
               </div>
@@ -211,6 +224,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    maxLength={100}
                     placeholder="Your full name"
                   />
                 </div>
@@ -237,6 +251,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
+                    maxLength={150}
                     placeholder="What's this about?"
                   />
                 </div>
@@ -250,6 +265,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows="5"
+                    maxLength={2000}
                     placeholder="Tell me about your project or opportunity..."
                   />
                 </div>

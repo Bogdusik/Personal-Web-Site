@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../contexts/ThemeContext';
@@ -7,14 +7,10 @@ import './ThemeToggle.css';
 const ThemeToggle = React.memo(() => {
   const { theme, toggleTheme, isDark } = useTheme();
 
-  const handleToggle = useCallback(() => {
-    toggleTheme();
-  }, [toggleTheme]);
-
   return (
     <motion.button
       className="theme-toggle"
-      onClick={handleToggle}
+      onClick={toggleTheme}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}

@@ -8,9 +8,16 @@ import './Hero.css';
 const Hero = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
+  const rafRef = useRef(null);
 
   const handleMouseMove = useCallback((e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
+    if (rafRef.current) return;
+    const x = e.clientX;
+    const y = e.clientY;
+    rafRef.current = requestAnimationFrame(() => {
+      setMousePosition({ x, y });
+      rafRef.current = null;
+    });
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -20,10 +27,11 @@ const Hero = React.memo(() => {
   useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [handleMouseMove, handleScroll]);
 
@@ -244,15 +252,15 @@ const Hero = React.memo(() => {
             >
               <FaGithub />
             </motion.a>
-                   <motion.a
-                     href="https://www.linkedin.com/in/bohdan-bozhenko/"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     whileHover={{ scale: 1.2, rotate: 5 }}
-                     whileTap={{ scale: 0.9 }}
-                   >
-                     <FaLinkedin />
-                   </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/bohdan-bozhenko/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaLinkedin />
+            </motion.a>
           </motion.div>
         </motion.div>
 

@@ -289,28 +289,15 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <div className="project-image">
-                  {projects[activeProject].title === 'CoderType - Speed Typing Game' ? (
-                    <iframe
-                      src="https://coder-type-bogdus1k.vercel.app"
-                      className="project-iframe"
-                      title="CoderType Game"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                      }}
-                    />
-                  ) : (
-                    <img 
-                      src={projects[activeProject].image} 
-                      alt={`${projects[activeProject].title} Screenshot`}
-                      className="project-screenshot"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                      }}
-                    />
-                  )}
-                  
+                  <img
+                    src={projects[activeProject].image}
+                    alt={`${projects[activeProject].title} Screenshot`}
+                    className="project-screenshot"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'flex';
+                    }}
+                  />
                   <div className="image-placeholder" style={{ display: 'none' }}>
                     <FaCode className="placeholder-icon" />
                     <span>Project Screenshot</span>

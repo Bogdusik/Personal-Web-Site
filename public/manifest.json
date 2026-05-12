@@ -28,19 +28,5 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
-  "categories": ["portfolio", "developer", "technology"],
-  "screenshots": [
-    {
-      "src": "screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ]
+  "categories": ["portfolio", "developer", "technology"]
 }

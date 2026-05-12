@@ -37,11 +37,6 @@ html {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* Performance optimizations */
-* {
-  will-change: auto;
-}
-
 .loading-placeholder {
   display: flex;
   justify-content: center;

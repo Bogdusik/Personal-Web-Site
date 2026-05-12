@@ -15,27 +15,28 @@ const InteractiveDemo = lazy(() => import('./components/InteractiveDemo'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
+const SECTIONS = ['hero', 'about', 'skills', 'projects', 'demo', 'contact', 'footer'];
+
 const App = React.memo(() => {
   const [currentSection, setCurrentSection] = useState('hero');
-  const sections = ['hero', 'about', 'skills', 'projects', 'demo', 'contact', 'footer'];
   
   // Swipe navigation for mobile
-  const swipeHandlers = useSwipeToNavigate(sections, currentSection, setCurrentSection);
+  const swipeHandlers = useSwipeToNavigate(SECTIONS, currentSection, setCurrentSection);
 
   const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY + SCROLL_OFFSET;
 
-    for (let i = 0; i < sections.length; i++) {
-      const element = document.getElementById(sections[i]);
+    for (let i = 0; i < SECTIONS.length; i++) {
+      const element = document.getElementById(SECTIONS[i]);
       if (element) {
         const { offsetTop, offsetHeight } = element;
         if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setCurrentSection(sections[i]);
+          setCurrentSection(SECTIONS[i]);
           break;
         }
       }
     }
-  }, [sections]);
+  }, [SECTIONS]);
 
   useEffect(() => {
     let ticking = false;
