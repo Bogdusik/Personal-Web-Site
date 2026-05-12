@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaReact, FaJava, FaPython, FaJs, FaHtml5, FaCss3Alt, 
@@ -108,7 +108,8 @@ const Skills = () => {
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title">Technical Skills</h2>
@@ -122,7 +123,8 @@ const Skills = () => {
           <motion.div
             className="skill-categories"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="category-tabs">
@@ -197,8 +199,9 @@ const Skills = () => {
           <motion.div
             className="knowledge-section"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="subsection-title">Knowledge Areas</h3>
             <div className="knowledge-grid">
@@ -207,8 +210,9 @@ const Skills = () => {
                   key={area.name}
                   className="knowledge-card"
                   initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.07 }}
                   whileHover={{ scale: 1.02, y: -3 }}
                 >
                   <div className="knowledge-header">
@@ -220,8 +224,9 @@ const Skills = () => {
                     <motion.div
                       className="knowledge-fill"
                       initial={{ width: 0 }}
-                      animate={{ width: `${area.level}%` }}
-                      transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
+                      whileInView={{ width: `${area.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.3 + index * 0.07 }}
                     />
                   </div>
                 </motion.div>
@@ -233,8 +238,9 @@ const Skills = () => {
           <motion.div
             className="projects-section"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="subsection-title">Project Complexity & Technologies</h3>
             <div className="projects-grid">
@@ -243,8 +249,9 @@ const Skills = () => {
                   key={project.title}
                   className="project-card"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.03, y: -5 }}
                 >
                   <div className="project-header">
@@ -255,8 +262,9 @@ const Skills = () => {
                         <motion.div
                           className="complexity-fill"
                           initial={{ width: 0 }}
-                          animate={{ width: `${project.complexity}%` }}
-                          transition={{ duration: 1, delay: 1 + index * 0.1 }}
+                          whileInView={{ width: `${project.complexity}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
                         />
                       </div>
                     </div>

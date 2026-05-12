@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaAward, FaLanguage, FaCar, FaGamepad, FaMusic, FaLaptop } from 'react-icons/fa';
+import { FaGraduationCap, FaAward, FaLanguage, FaCar, FaGamepad, FaMusic, FaLaptop, FaDesktop } from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
@@ -46,7 +46,7 @@ const About = () => {
     { name: "Technology", icon: FaLaptop, color: "#4ecdc4" },
     { name: "Video Games", icon: FaGamepad, color: "#45b7d1" },
     { name: "Music", icon: FaMusic, color: "#96ceb4" },
-    { name: "PC Building", icon: FaLaptop, color: "#feca57" }
+    { name: "PC Building", icon: FaDesktop, color: "#feca57" }
   ];
 
   return (
@@ -55,7 +55,8 @@ const About = () => {
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title">About Me</h2>
@@ -109,8 +110,9 @@ const About = () => {
                   key={index}
                   className="education-item"
                   initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <div className="education-content">
                     <h4>{edu.institution}</h4>
@@ -126,8 +128,9 @@ const About = () => {
           <motion.div
             className="certificates-section"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
           >
             <h3 className="subsection-title">
               <FaAward className="title-icon" />
@@ -139,8 +142,9 @@ const About = () => {
                   key={index}
                   className="certificate-item"
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <FaAward className="certificate-icon" />
@@ -154,8 +158,9 @@ const About = () => {
             <motion.div
               className="languages-section"
               initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
             >
               <h3 className="subsection-title">
                 <FaLanguage className="title-icon" />
@@ -167,8 +172,9 @@ const About = () => {
                     key={index}
                     className="language-item"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <span className="flag">{lang.flag}</span>
                     <div className="language-info">
@@ -183,8 +189,9 @@ const About = () => {
             <motion.div
               className="interests-section"
               initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
             >
               <h3 className="subsection-title">Interests</h3>
               <div className="interests-grid">
@@ -195,8 +202,9 @@ const About = () => {
                       key={index}
                       className="interest-item"
                       initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       style={{ '--interest-color': interest.color }}
                     >

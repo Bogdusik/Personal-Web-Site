@@ -15,7 +15,7 @@ const InteractiveDemo = () => {
   const [accuracy, setAccuracy] = useState(0);
   const [wpm, setWpm] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const [startTime, setStartTime] = useState(null);
+  const startTimeRef = useRef(null);
   const [errors, setErrors] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showResults, setShowResults] = useState(false);
@@ -24,6 +24,7 @@ const InteractiveDemo = () => {
   
   const textareaRef = useRef(null);
   const intervalRef = useRef(null);
+  const finishGameRef = useRef(null);
 
   const codeSnippets = {
     easy: [
@@ -147,7 +148,10 @@ app.get('/api/users', (req, res) => {
   const startGame = () => {
     const snippets = codeSnippets[difficulty];
     const randomSnippet = snippets[Math.floor(Math.random() * snippets.length)];
-    setTargetCode(randomSnippet);
+    const target = gameMode === 'typing'
+      ? randomSnippet
+      : algorithmChallenges[Math.floor(Math.random() * algorithmChallenges.length)].solution;
+    setTargetCode(target);
     setCurrentCode('');
     setCurrentCharIndex(0);
     setTimeLeft(60);
@@ -157,24 +161,12 @@ app.get('/api/users', (req, res) => {
     setErrors(0);
     setGameState('playing');
     setIsPlaying(true);
-    setStartTime(Date.now());
+    startTimeRef.current = Date.now();
     setShowResults(false);
-    
-    if (gameMode === 'typing') {
-      setTargetCode(randomSnippet);
-    } else {
-      const challenge = algorithmChallenges[Math.floor(Math.random() * algorithmChallenges.length)];
-      setTargetCode(challenge.solution);
-    }
   };
 
   const pauseGame = () => {
-    setIsPlaying(!isPlaying);
-    if (isPlaying) {
-      clearInterval(intervalRef.current);
-    } else {
-      startTimer();
-    }
+    setIsPlaying(prev => !prev);
   };
 
   const resetGame = () => {
@@ -192,25 +184,13 @@ app.get('/api/users', (req, res) => {
     setShowResults(false);
   };
 
-  const startTimer = () => {
-    intervalRef.current = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          finishGame();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
-
   const finishGame = () => {
     setIsPlaying(false);
     clearInterval(intervalRef.current);
     setGameState('finished');
     setShowResults(true);
-    
-    const timeElapsed = (Date.now() - startTime) / 1000 / 60; // minutes
+
+    const timeElapsed = (Date.now() - startTimeRef.current) / 1000 / 60; // minutes
     const wordsTyped = currentCode.split(' ').length;
     const calculatedWpm = Math.round(wordsTyped / timeElapsed);
     setWpm(calculatedWpm);
@@ -225,10 +205,19 @@ app.get('/api/users', (req, res) => {
   };
 
   useEffect(() => {
-    if (isPlaying && gameState === 'playing') {
-      startTimer();
-    }
-    
+    clearInterval(intervalRef.current);
+    if (!isPlaying || gameState !== 'playing') return;
+
+    intervalRef.current = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
     return () => clearInterval(intervalRef.current);
   }, [isPlaying, gameState]);
 
@@ -272,6 +261,14 @@ app.get('/api/users', (req, res) => {
     if (wpm >= 20 && accuracy >= 80) return { level: 'Intermediate', color: '#f59e0b', icon: FaTrophy };
     return { level: 'Beginner', color: '#ef4444', icon: FaKeyboard };
   };
+
+  finishGameRef.current = finishGame;
+
+  useEffect(() => {
+    if (timeLeft === 0 && gameState === 'playing') {
+      finishGameRef.current();
+    }
+  }, [timeLeft, gameState]);
 
   const performance = getPerformanceLevel();
   const PerformanceIcon = performance.icon;
