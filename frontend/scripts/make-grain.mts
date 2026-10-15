@@ -2,7 +2,8 @@ import { writeFileSync } from 'node:fs';
 import { crc32, deflateSync } from 'node:zlib';
 
 const SIZE = 128;
-const ALPHA = 36; // about 14% opacity
+const ALPHA = 28; // about 11% opacity
+const LEVELS = [200, 225, 245, 255]; // light greys only: at most ~3% darker than the paper
 
 function chunk(type: string, data: Buffer): Buffer {
   const length = Buffer.alloc(4);
@@ -21,7 +22,7 @@ const raw = Buffer.alloc(stride * SIZE);
 for (let y = 0; y < SIZE; y++) {
   raw[y * stride] = 0;
   for (let x = 0; x < SIZE; x++) {
-    raw[y * stride + 1 + x * 2] = Math.floor(rand() * 4) * 85;
+    raw[y * stride + 1 + x * 2] = LEVELS[Math.floor(rand() * LEVELS.length)];
     raw[y * stride + 2 + x * 2] = ALPHA;
   }
 }
