@@ -261,14 +261,10 @@ Projects (sheet 02):
 | P-06 | Checkers | CI ✓ · 14 tests | Server-authoritative moves (FEN, turn and ownership checks, rules engine); SSE updates; both ELO ratings updated in one transaction | repo (the Vercel deployment is behind Vercel login; LIVE is added once it is public) |
 | P-07 | FLYON | GEOSPATIAL · REAL-TIME | See the FLYON hard part below | repo, article |
 
-FLYON hard part (wording depends on open item 1):
-
-- If the fix is merged into FLYON first: "Live ingest got slower as a flight grew: every telemetry
-  point re-aggregated the whole flight, about 40.5M `ST_Distance` calls for a 9,000-point flight.
-  Indexes could not help. I replaced the per-point recompute with an incremental accumulator."
-- If not: "Found why live ingest got slower as a flight grew: every telemetry point re-aggregated
-  the whole flight, about 40.5M `ST_Distance` calls for a 9,000-point flight. Indexes could not
-  help; the write-up benchmarks the incremental fix."
+FLYON hard part (the fix is merged, FLYON#9): "Live ingest got slower as a flight grew: every
+telemetry point re-aggregated the whole flight, about 40.5M `ST_Distance` calls for a 9,000-point
+flight, and indexes could not help. I replaced it with an incremental accumulator and a per-flight
+write queue: 152.8 s → 50.1 s for the same flight."
 
 About:
 
@@ -303,7 +299,7 @@ About:
 | AI QA Assistant: 49 tests in CI | AI-QA-Assistant#2 added `npm test` to CI; green run, 3 files / 49 tests |
 | Real-time Chat: 23 tests (18 backend, 5 frontend), Testcontainers | PR #4, CI green on `ea82122` |
 | Checkers: 14 tests in CI | `.github/workflows/ci.yml` runs `npm test`; green on `main`; local run 14/14 |
-| FLYON: quadratic ingest | `telemetryService.ts:88` calls `updateFlightStats` per point; `:175` recomputes the whole flight with a `LAG` window and `ST_Distance`; Σ(1..9000) = 40,504,500. The incremental fix is in the article, not in the repo (checked all branches, 2026-10-15) |
+| FLYON: quadratic ingest found and fixed | before: `telemetryService.ts` called the full recompute per point (Σ(1..9000) = 40,504,500 distance calls); fix merged in FLYON#9 (`0b2c990`); 152.8 s → 50.1 s from `docs/performance/telemetry-ingest.md` (benchmark run 2026-10-15) |
 | AI Office: 483 backend tests in CI | `pytest --collect-only` on `27086d2` (= `origin/main`): 483; CI job "Backend (pytest)" green on `main` |
 | AI Office: 33 audit findings | `docs/audit.md`, summary table (6 High, 9 Medium, 11 Low, 7 Info). The file is not committed, so it is not shown on the site (open item 2) |
 | Articles: titles, dates, top story | both URLs return 200 (2026-10-15); `datePublished` in the page; FLYON article tagged `#hackernoon-top-story` |
@@ -383,9 +379,9 @@ Lighthouse CI join. It runs on pull requests and on pushes to `main`.
 
 ## 15. Open items
 
-1. FLYON: is the incremental-accumulator fix merged into the repo before launch? This picks the
-   hard-part wording in section 8.
-2. AI Office audit: commit `docs/audit.md` (or a summary of it) to show "33 findings" on the card;
-   until then the card shows the tests only.
+1. FLYON: resolved, the fix is merged (FLYON#9).
+2. AI Office audit: the summary `docs/security-audit.md` is in AI-Office#1. Not every High finding
+   is fully fixed (H1 and P2 are partly fixed), so the card shows "CI ✓ · 483 TESTS · SECURITY
+   AUDIT ↗" linking to that file, without a number.
 3. Checkers: a public Vercel URL (the current one is behind Vercel login).
 4. The CV file `CV_Bohdan_Bozhenko_Glasgow.pdf`, supplied by the user.

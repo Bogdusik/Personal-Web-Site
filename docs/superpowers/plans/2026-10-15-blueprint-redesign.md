@@ -246,6 +246,7 @@ export type CiBadge = {
   testsRunInCi: true;
   tests: number;
   note?: string;
+  link?: { text: string; href: string };
 };
 
 export type Project = {
@@ -299,7 +300,7 @@ export type Diagram = {
 };
 ```
 
-`CiBadge.note` extends the spec's type for the "TESTCONTAINERS" suffix on Real-time Chat.
+`CiBadge.note` and `CiBadge.link` extend the spec's type: the "TESTCONTAINERS" suffix on Real-time Chat and the "SECURITY AUDIT ↗" link on AI Office.
 
 - [ ] **Step 2: Write the failing tests**
 
@@ -483,7 +484,11 @@ export const projects: Project[] = [
     summary:
       'Local 3D office where AI agents run tasks in stages (plan → research → draft → self-check) on Ollama, with a review queue.',
     stack: ['FASTAPI', 'POSTGRESQL', 'OLLAMA', 'NEXT.JS'],
-    ci: { testsRunInCi: true, tests: 483 },
+    ci: {
+      testsRunInCi: true,
+      tests: 483,
+      link: { text: 'SECURITY AUDIT', href: 'https://github.com/Bogdusik/AI-Office/blob/main/docs/security-audit.md' },
+    },
     links: {
       repo: 'https://github.com/Bogdusik/AI-Office',
       demo: 'https://github.com/Bogdusik/AI-Office/blob/main/docs/screenshots/01-hero.gif',
@@ -554,9 +559,8 @@ export const projects: Project[] = [
     summary:
       'Flight analytics for drone and FPV owners: live telemetry over WebSocket, danger-zone warnings, post-flight analysis.',
     stack: ['NODE.JS / EXPRESS (TS)', 'POSTGRESQL + POSTGIS', 'WEBSOCKET', 'NEXT.JS'],
-    // Spec section 8, open item 1: switch to the "fix merged" wording once the accumulator is in the repo.
     hardPart:
-      'Found why live ingest got slower as a flight grew: every telemetry point re-aggregated the whole flight, about 40.5M ST_Distance calls for a 9,000-point flight. Indexes could not help; the write-up benchmarks the incremental fix.',
+      'Live ingest got slower as a flight grew: every telemetry point re-aggregated the whole flight, about 40.5M ST_Distance calls for a 9,000-point flight, and indexes could not help. I replaced it with an incremental accumulator and a per-flight write queue: 152.8 s → 50.1 s for the same flight.',
     links: {
       repo: 'https://github.com/Bogdusik/FLYON',
       article: 'https://hackernoon.com/i-added-every-index-but-my-telemetry-pipeline-was-still-quadratic',
@@ -684,7 +688,7 @@ export function externalLinks(): string[] {
   const all = [
     profile.github,
     profile.linkedin,
-    ...projects.flatMap((p) => Object.values(p.links)),
+    ...projects.flatMap((p) => [...Object.values(p.links), p.ci?.link?.href]),
     ...articles.map((a) => a.url),
   ];
   return [...new Set(all.filter((l): l is string => Boolean(l)))];
@@ -712,7 +716,7 @@ git commit -m "feat(content): typed site content with integrity tests"
 
 **Interfaces:**
 - Consumes: `profile`, `ProjectLinks` type (Task 2).
-- Produces: `ButtonLink({ href, children, variant?: 'solid' | 'outline', download?: string, className?: string })`; `SkipLink()`; `Dot({ className? })`; `MetaLine({ code: string, right: string })`; `ProjectLinks({ title: string, links: ProjectLinks, className?: string })`; `Sheet({ id, labelledBy?, className?, children })`; Tailwind tokens `bg-paper text-ink text-ink-2 text-ink-3 text-muted border-rule text-accent bg-accent font-mono` and the `label-mono` utility.
+- Produces: `ButtonLink({ href, children, variant?: 'solid' | 'outline', download?: string, className?: string })`; `SkipLink()`; `Dot({ className? })`; `MetaLine({ code: string, right: string, link?: { text: string; href: string } })`; `ProjectLinks({ title: string, links: ProjectLinks, className?: string })`; `Sheet({ id, labelledBy?, className?, children })`; Tailwind tokens `bg-paper text-ink text-ink-2 text-ink-3 text-muted border-rule text-accent bg-accent font-mono` and the `label-mono` utility.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -747,6 +751,13 @@ describe('MetaLine', () => {
     render(<MetaLine code="P-04" right="CI ✓ · 49 TESTS" />);
     expect(screen.getByText('P-04')).toBeInTheDocument();
     expect(screen.getByText('CI ✓ · 49 TESTS')).toBeInTheDocument();
+    expect(screen.queryByRole('link')).toBeNull();
+  });
+
+  it('appends an optional link after the label', () => {
+    render(<MetaLine code="P-02" right="CI ✓ · 483 TESTS" link={{ text: 'SECURITY AUDIT', href: 'https://example.com/audit' }} />);
+    expect(screen.getByText('CI ✓ · 483 TESTS')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /SECURITY AUDIT/ })).toHaveAttribute('href', 'https://example.com/audit');
   });
 });
 
@@ -935,11 +946,24 @@ export function Dot({ className = '' }: { className?: string }) {
 `frontend/src/components/ui/MetaLine.tsx`:
 
 ```tsx
-export function MetaLine({ code, right }: { code: string; right: string }) {
+type MetaLink = { text: string; href: string };
+
+export function MetaLine({ code, right, link }: { code: string; right: string; link?: MetaLink }) {
   return (
     <p className="flex justify-between gap-3 label-mono text-muted">
       <span className="text-accent">{code}</span>
-      <span className="text-right">{right}</span>
+      <span className="text-right">
+        <span>{right}</span>
+        {link && (
+          <>
+            {' · '}
+            <a href={link.href} className="text-accent hover:underline">
+              {link.text}
+              <span aria-hidden="true">&nbsp;↗</span>
+            </a>
+          </>
+        )}
+      </span>
     </p>
   );
 }
@@ -1068,9 +1092,13 @@ describe('FeaturedCard', () => {
     expect(within(card).queryByRole('link', { name: /DEMO/ })).toBeNull();
   });
 
-  it('shows the CI badge and DEMO GIF for AI Office, no LIVE', () => {
+  it('shows the CI badge with the audit link and DEMO GIF for AI Office, no LIVE', () => {
     render(<FeaturedCard project={byId('ai-office')} />);
     expect(screen.getByText('CI ✓ · 483 TESTS')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /SECURITY AUDIT/ })).toHaveAttribute(
+      'href',
+      'https://github.com/Bogdusik/AI-Office/blob/main/docs/security-audit.md',
+    );
     expect(screen.getByRole('link', { name: /DEMO GIF/ })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /LIVE/ })).toBeNull();
   });
@@ -1124,7 +1152,7 @@ import type { Project } from '@/content/types';
 export function FeaturedCard({ project }: { project: Project }) {
   return (
     <article id={project.id} className="flex h-full min-w-0 flex-col px-7 py-6">
-      <MetaLine code={project.code} right={metaRight(project)} />
+      <MetaLine code={project.code} right={metaRight(project)} link={project.ci?.link} />
       <h3 className="mt-3.5 text-[26px] font-semibold tracking-[-0.02em]">{project.title}</h3>
       <p className="mt-2 text-sm leading-normal text-ink-3">{project.summary}</p>
       <p className="mt-auto pt-2.5 label-mono tracking-[0.04em] break-words">{project.stack.join(' · ')}</p>
@@ -1175,7 +1203,7 @@ import type { Project } from '@/content/types';
 export function DetailedCard({ project }: { project: Project }) {
   return (
     <article id={project.id} className="flex h-full min-w-0 flex-col px-4 py-6 lg:px-10 lg:py-8">
-      <MetaLine code={project.code} right={metaRight(project)} />
+      <MetaLine code={project.code} right={metaRight(project)} link={project.ci?.link} />
       <h3 className="mt-2.5 text-2xl font-semibold tracking-[-0.025em] lg:mt-3.5 lg:text-[32px]">{project.title}</h3>
       <p className="mt-2 text-[15px] leading-normal text-ink-2 lg:text-base">{project.summary}</p>
       <p className="mt-3 label-mono tracking-[0.04em] break-words">{project.stack.join(' · ')}</p>
