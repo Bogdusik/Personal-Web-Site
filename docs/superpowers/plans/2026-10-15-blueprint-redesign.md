@@ -1183,7 +1183,18 @@ export function FeaturedRow({ project }: { project: Project }) {
         <span aria-hidden="true" className="text-accent group-open:rotate-90">→</span>
       </summary>
       <div className="pr-3.5 pb-4 pl-[58px]">
-        <p className="label-mono text-[10.5px] text-muted">{metaRight(project)}</p>
+        <p className="label-mono text-[10.5px] text-muted">
+          {metaRight(project)}
+          {project.ci?.link && (
+            <>
+              {' · '}
+              <a href={project.ci.link.href} className="text-accent hover:underline">
+                {project.ci.link.text}
+                <span aria-hidden="true">&nbsp;↗</span>
+              </a>
+            </>
+          )}
+        </p>
         <p className="mt-1.5 text-[15px] leading-normal text-ink-3">{project.summary}</p>
         <ProjectLinks title={project.title} links={project.links} className="mt-1" />
       </div>
