@@ -9,7 +9,7 @@ export function FeaturedRow({ project }: { project: Project }) {
         <span className="label-mono text-[10.5px] text-accent">{project.code}</span>
         <span className="min-w-0">
           <span className="block text-lg font-semibold tracking-[-0.01em]">{project.title}</span>
-          <span className="mt-0.5 block font-mono text-[10px] tracking-[0.04em] break-words text-muted">
+          <span className="mt-0.5 block font-mono text-[10px] tracking-[0.01em] break-words text-muted">
             {project.stack.join(' · ')}
           </span>
         </span>

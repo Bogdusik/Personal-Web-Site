@@ -3,7 +3,7 @@ type MetaLink = { text: string; href: string };
 export function MetaLine({ code, right, link }: { code: string; right: string; link?: MetaLink }) {
   return (
     <p className="flex justify-between gap-3 label-mono text-muted">
-      <span className="text-accent">{code}</span>
+      <span className="shrink-0 whitespace-nowrap text-accent">{code}</span>
       <span className="text-right">
         <span>{right}</span>
         {link && (
