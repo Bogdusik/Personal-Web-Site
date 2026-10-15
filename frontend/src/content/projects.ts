@@ -73,7 +73,7 @@ export const projects: Project[] = [
     summary: 'Group chat over STOMP/WebSocket with a SockJS fallback; message history in PostgreSQL.',
     stack: ['JAVA 17', 'SPRING BOOT 3.4', 'SPRING DATA JPA', 'POSTGRESQL', 'REACT'],
     hardPart:
-      'Persist, then broadcast: a message is saved in its own transaction and only the saved row goes out. Each session’s frames are handled in arrival order, which the STOMP integration test on Testcontainers only passed reliably after that fix.',
+      'Persist, then broadcast: a message is saved in its own transaction and only the saved row goes out. Each session’s frames are handled in arrival order, which the STOMP integration test on PostgreSQL in Testcontainers only passed reliably after that fix.',
     ci: { testsRunInCi: true, tests: 23, note: 'TESTCONTAINERS' },
     links: { repo: 'https://github.com/Bogdusik/Real-Time-Chat-Application' },
     placement: 'projects',

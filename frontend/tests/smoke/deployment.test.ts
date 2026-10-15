@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { externalLinks } from '@/content/links';
+import { landedOnSamePage } from './link-check';
 
 const base = process.env.SMOKE_URL?.replace(/\/$/, '');
 if (!base) throw new Error('Set SMOKE_URL to the deployment to check, e.g. https://personal-website-bogdusik.vercel.app');
@@ -18,6 +19,7 @@ describe('deployment', () => {
     const res = await fetch(`${base}/cv.pdf`, { headers: bypass });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain('application/pdf');
+    expect(res.headers.get('content-disposition')).toContain('filename="Bohdan_Bozhenko_CV.pdf"');
   });
 
   it('redirects the old CV URL permanently to /cv.pdf', async () => {
@@ -33,6 +35,6 @@ describe('external links', () => {
   it.each(links)('%s opens and is public', async (link) => {
     const res = await fetch(link, { headers: { 'user-agent': 'Mozilla/5.0 (portfolio link check)' } });
     expect(res.status, link).toBeLessThan(400);
-    expect(res.url, `${link} ended on a login page`).not.toMatch(/vercel\.com\/login|github\.com\/login/);
+    expect(landedOnSamePage(link, res.url), `${link} ended on ${res.url}`).toBe(true);
   });
 });
