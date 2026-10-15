@@ -298,6 +298,7 @@ About:
 | Programming Helper AI on OpenAI | `package.json` (`openai`), `lib/openai.ts` |
 | AI QA Assistant: 49 tests in CI | AI-QA-Assistant#2 added `npm test` to CI; green run, 3 files / 49 tests |
 | Real-time Chat: 23 tests (18 backend, 5 frontend), Testcontainers | PR #4, CI green on `ea82122` |
+| Real-time Chat: frame order fix made the STOMP integration test reliable | Real-Time-Chat-Application `README.md`, "What I learned" (`setPreserveReceiveOrder(true)` … "the integration test only passed reliably after I understood that") |
 | Checkers: 14 tests in CI | `.github/workflows/ci.yml` runs `npm test`; green on `main`; local run 14/14 |
 | FLYON: quadratic ingest found and fixed | before: `telemetryService.ts` called the full recompute per point (Σ(1..9000) = 40,504,500 distance calls); fix merged in FLYON#9 (`0b2c990`); 152.8 s → 50.1 s from `docs/performance/telemetry-ingest.md` (benchmark run 2026-10-15) |
 | AI Office: 483 backend tests in CI | `pytest --collect-only` on `27086d2` (= `origin/main`): 483; CI job "Backend (pytest)" green on `main` |
