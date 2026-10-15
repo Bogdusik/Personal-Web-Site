@@ -1,5 +1,8 @@
 import { SiteHeader } from '@/components/header/SiteHeader';
+import { AboutSheet } from '@/components/sheets/AboutSheet';
+import { ContactSheet } from '@/components/sheets/ContactSheet';
 import { IndexSheet } from '@/components/sheets/IndexSheet';
+import { ProjectsSheet } from '@/components/sheets/ProjectsSheet';
 
 export default function Home() {
   return (
@@ -9,6 +12,9 @@ export default function Home() {
       </div>
       <main id="main" tabIndex={-1} className="outline-none">
         <IndexSheet />
+        <ProjectsSheet />
+        <AboutSheet />
+        <ContactSheet />
       </main>
     </>
   );
