@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Bohdan Bozhenko — Backend / AI Engineer',
   description:
     'Backend / AI engineer in Scotland. Python / FastAPI, Spring Boot, PostgreSQL and LLM-powered products. First Class BSc Computing, available immediately.',
+  icons: { icon: '/favicon.svg' },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
