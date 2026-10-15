@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en-GB" className={`${sans.variable} ${mono.variable}`}>
-      <body className="min-w-80 antialiased">
+      <body className="antialiased">
         <SkipLink />
         {children}
       </body>
