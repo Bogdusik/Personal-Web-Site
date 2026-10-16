@@ -24,7 +24,7 @@
 - Touch targets ≥ 44px; visible focus ring of 2px accent outline with 2px offset.
 - No horizontal scroll at any width from 320px.
 - Commits: conventional (`type(scope): description`), with no `Co-Authored-By` or any other attribution trailer. Never commit to `main` directly; every stage is a PR, squash-merged.
-- Deviation from the spec, on purpose: the budget script is `scripts/check-js-budget.ts` (run by Node 24's built-in type stripping) instead of `.mjs`, so `tsc` checks it.
+- Deviation from the spec, on purpose: the budget script is `scripts/check-js-budget.mts` (run by Node 24's built-in type stripping) instead of `.mjs`, so `tsc` checks it.
 
 ## Review Focus
 
@@ -37,6 +37,8 @@
 ---
 
 # Stage 1 — Launch (ends with the new site in production)
+
+> **Order change (user, 2026-10-16):** Task 11 (metadata, Open Graph, JSON-LD, sitemap, robots, OG image, 404) runs on this branch **before Task 10**, so LinkedIn caches the right card from the first share. Stage 2 is therefore empty. Claude never pushes: the user pushes the branch and does the Vercel steps in Task 10.
 
 Branch: `feature/blueprint-redesign` (already exists; it holds the spec and this plan).
 
@@ -2267,7 +2269,7 @@ git commit -m "feat(sheets): projects, about with writing, and contact sheets"
 
 **Interfaces:**
 - Consumes: `externalLinks()` (Task 2).
-- Produces: `npm run test:smoke` with `BASE_URL` (required) and `VERCEL_BYPASS` (optional, a Vercel protection-bypass secret for protected preview deployments).
+- Produces: `npm run test:smoke` with `SMOKE_URL` (required for the deployment checks; `BASE_URL` is reserved by Vite) and `VERCEL_BYPASS` (optional, a Vercel protection-bypass secret for protected preview deployments).
 
 - [ ] **Step 1: Add the CV**
 
@@ -2363,7 +2365,7 @@ describe('external links', () => {
 });
 ```
 
-Run against the current SearchWork deployment to prove the link checks work (the site checks will fail until the new site is deployed; that is expected): `BASE_URL=https://searchwork-bogdusik.vercel.app npm run test:smoke -- -t "external links"`
+Run against the current SearchWork deployment to prove the link checks work (the site checks will fail until the new site is deployed; that is expected): `SMOKE_URL=https://searchwork-bogdusik.vercel.app npm run test:smoke -- -t "external links"`
 Expected: all external-link cases PASS. If one fails, fix the link in `src/content/` or report it to the user before going on.
 
 - [ ] **Step 5: Favicon**
@@ -2412,7 +2414,7 @@ All copy is in `frontend/src/content/`. Every number on the site has a source (a
 ## Deployment checks
 
 ```bash
-BASE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke
+SMOKE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke
 ```
 ````
 
@@ -2446,7 +2448,7 @@ In Vercel: Add New → Project → import `Bogdusik/Personal-Web-Site` again, na
 
 - [ ] **Step 3: Check the preview**
 
-Run: `BASE_URL=<preview URL> VERCEL_BYPASS=<secret> npm run test:smoke`
+Run: `SMOKE_URL=<preview URL> VERCEL_BYPASS=<secret> npm run test:smoke`
 Expected: all PASS. Then a manual pass: compare it with the canvas at 390px and 1440px; run Lighthouse on mobile and record the four scores in the PR description (budgets are not enforced until Stage 4).
 
 - [ ] **Step 4: Merge and switch production**
@@ -2455,7 +2457,7 @@ Squash-merge the PR. Immediately, in the existing production project: Settings �
 
 - [ ] **Step 5: Verify production**
 
-Run: `BASE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke`
+Run: `SMOKE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke`
 Expected: all PASS. On failure, roll back: set Root Directory back to the repository root and promote the last CRA deployment.
 
 - [ ] **Step 6: Tag and clean up**
@@ -2469,9 +2471,9 @@ Delete the `personal-website-next` project, or keep it for the preview branches 
 
 ---
 
-# Stage 2 — SEO and sharing
+# Stage 2 — SEO and sharing (moved into Stage 1)
 
-Branch: `feature/seo-sharing` from `main`. Ends with a squash-merged PR, an automatic production deploy, and `npm run test:smoke` against production.
+Task 11 now runs on `feature/blueprint-redesign` before Task 10. Its last step ("Commit, PR, merge, verify") becomes a commit on that branch; the PR, merge and production check happen in Task 10.
 
 ### Task 11: Metadata, JSON-LD, sitemap, robots, OG image, 404
 
@@ -2666,13 +2668,92 @@ git commit -m "feat(seo): metadata, Person JSON-LD, sitemap, robots, OG image an
 git push -u origin feature/seo-sharing
 ```
 
-Open the PR, wait for green CI, squash-merge, then run `BASE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke` and check the share card with a link-preview tool.
+Open the PR, wait for green CI, squash-merge, then run `SMOKE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke` and check the share card with a link-preview tool.
 
 ---
 
 # Stage 3 — End-to-end tests
 
 Branch: `chore/e2e-tests` from `main`.
+
+### Task 12b: Mobile menu focus and featured headings on mobile
+
+From the Stage 1 review, moved here by the user.
+
+**Files:**
+- Modify: `frontend/src/components/header/MobileMenu.tsx`, `frontend/src/components/projects/FeaturedRow.tsx`, `frontend/src/components/sheets/IndexSheet.tsx`
+- Test: `frontend/tests/unit/header.test.tsx`, `frontend/tests/unit/index-sheet.test.tsx`
+
+- [ ] **Step 1: Write the failing tests**
+
+Append to `frontend/tests/unit/header.test.tsx`, inside `describe('MobileMenu', …)`:
+
+```tsx
+  it('closes when keyboard focus leaves the menu', async () => {
+    const user = userEvent.setup();
+    render(<div><MobileMenu links={links} /><button type="button">after</button></div>);
+    const button = screen.getByRole('button', { name: /menu/i });
+    await user.click(button);
+    await user.tab(); // 02 Projects
+    await user.tab(); // 04 Contact
+    await user.tab(); // leaves the menu
+    expect(screen.getByRole('button', { name: 'after' })).toHaveFocus();
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
+```
+
+Append to `frontend/tests/unit/index-sheet.test.tsx`, inside `describe('IndexSheet', …)`:
+
+```tsx
+  it('gives every featured project a heading in both layouts, after the spec table', () => {
+    const { container } = render(<IndexSheet />);
+    for (const title of ['SearchWork', 'AI Office', 'Programming Helper AI']) {
+      expect(screen.getAllByRole('heading', { level: 3, name: title })).toHaveLength(2);
+    }
+    const spec = container.querySelector('dl')!;
+    const h2 = screen.getByRole('heading', { level: 2, name: 'Selected work' });
+    expect(spec.compareDocumentPosition(h2) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+```
+
+Run: `npm test -- header index-sheet`
+Expected: FAIL: aria-expanded stays "true"; one h3 per title; the spec table follows the h2.
+
+- [ ] **Step 2: Close the menu when focus leaves it**
+
+In `MobileMenu.tsx`, give the root `<div ref={rootRef} …>` an `onBlur` handler:
+
+```tsx
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false);
+      }}
+```
+
+- [ ] **Step 3: Headings in the mobile rows**
+
+In `FeaturedRow.tsx`, replace the title `<span className="block text-lg font-semibold tracking-[-0.01em]">{project.title}</span>` with:
+
+```tsx
+          <h3 className="text-lg font-semibold tracking-[-0.01em]">{project.title}</h3>
+```
+
+(A heading is allowed inside `<summary>`.)
+
+- [ ] **Step 4: Spec table before the "Selected work" heading**
+
+In `IndexSheet.tsx`, move the spec cell (`<div className="order-2 px-4 pt-4 …"><SpecTable … /></div>`) to just after the diagram cell, and pin it on desktop by adding `lg:col-start-4 lg:row-start-2` to its className, so the desktop grid still places it as the fourth cell of the second row.
+
+- [ ] **Step 5: Run the tests and check the layout**
+
+Run: `npm test && npm run lint && npm run typecheck`
+Expected: PASS. At 1440×900 the spec table is still the right-hand cell of the bottom band; at 390×844 the order is hero, spec, rows, diagram.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add frontend
+git commit -m "fix(a11y): close the mobile menu when focus leaves it; headings for featured projects on mobile"
+```
 
 ### Task 12: Playwright, accessibility and layout checks in CI
 
@@ -2899,12 +2980,12 @@ Branch: `chore/perf-budgets` from `main`.
 ### Task 13: First-load JS budget
 
 **Files:**
-- Create: `frontend/scripts/check-js-budget.ts`
+- Create: `frontend/scripts/check-js-budget.mts`
 - Modify: `frontend/package.json` (script `check:js-budget`), `.github/workflows/ci.yml`
 - Test: `frontend/tests/unit/js-budget.test.ts`
 
 **Interfaces:**
-- Produces: `scriptSources(html: string): string[]`, `firstLoadJsBytes(opts: { html: string; nextDir: string }): Promise<number>`, `JS_BUDGET_BYTES = 130 * 1024`; CLI `node scripts/check-js-budget.ts`.
+- Produces: `scriptSources(html: string): string[]`, `firstLoadJsBytes(opts: { html: string; nextDir: string }): Promise<number>`, `JS_BUDGET_BYTES = 130 * 1024`; CLI `node scripts/check-js-budget.mts`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -2916,7 +2997,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { expect, it } from 'vitest';
-import { firstLoadJsBytes, scriptSources } from '../../scripts/check-js-budget';
+import { firstLoadJsBytes, scriptSources } from '../../scripts/check-js-budget.mts';
 
 const html = `<html><head>
 <script src="/_next/static/chunks/a.js" async=""></script>
@@ -2951,7 +3032,7 @@ Expected: FAIL, module not found.
 
 - [ ] **Step 2: Write the script**
 
-`frontend/scripts/check-js-budget.ts`:
+`frontend/scripts/check-js-budget.mts`:
 
 ```ts
 import { readFile } from 'node:fs/promises';
@@ -2990,7 +3071,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
 }
 ```
 
-Add `"check:js-budget": "node scripts/check-js-budget.ts"` to `scripts`.
+Add `"check:js-budget": "node scripts/check-js-budget.mts"` to `scripts`.
 
 - [ ] **Step 3: Run the tests and the real check**
 
@@ -3102,4 +3183,4 @@ git commit -m "ci(perf): Lighthouse CI with the spec's score and metric budgets"
 git push -u origin chore/perf-budgets
 ```
 
-Open the PR, wait for all three CI jobs to go green, squash-merge, run `BASE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke` against production, and tag `v2.1.0`.
+Open the PR, wait for all three CI jobs to go green, squash-merge, run `SMOKE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke` against production, and tag `v2.1.0`.
