@@ -130,8 +130,14 @@ from `main` included, so the switch happens in two projects:
    (home page, CV, CV file name, old-URL redirect, every external link), the content, and a
    Lighthouse run on mobile.
 3. **Merge** the stage PR into `main` (squash).
-4. **Switch production at merge time:** in the existing project, set Root Directory to `frontend`
-   and redeploy `main`. `personal-website-bogdusik.vercel.app` now serves the new site.
+4. **Switch production at merge time:** in the existing project, set Root Directory to `frontend`,
+   Framework Preset to Next.js, Node.js to 24.x, and **clear the CRA overrides** for Build Command
+   (`react-scripts build`), Output Directory (`build`) and Install Command, then redeploy `main`.
+   Changing only the Root Directory fails the build with `react-scripts: command not found`, as the
+   old project's automatic preview of `feature/blueprint-redesign` already showed.
+   `personal-website-bogdusik.vercel.app` now serves the new site. Until then the old project also
+   builds previews of every pushed branch with its CRA settings; those previews fail and can be
+   ignored, or turned off with Settings → Git → Ignored Build Step.
 5. **Verify production:** `/`, `/cv.pdf`, the old CV URL redirect, and the OG card.
 6. **Clean up:** delete the preview project or keep it for later preview branches; tag `v2.0.0`.
 
