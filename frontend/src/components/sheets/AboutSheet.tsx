@@ -42,7 +42,7 @@ export function AboutSheet() {
                 <li key={article.url} className="grid gap-1 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-3">
                   <p className="label-mono text-muted">{formatMonthYear(article.published)}</p>
                   <div className="min-w-0">
-                    <a href={article.url} className="text-[17px] leading-snug font-semibold break-words hover:text-accent">
+                    <a href={article.url} className="inline-flex min-h-11 items-center text-[17px] leading-snug font-semibold break-words hover:text-accent">
                       {article.title}
                     </a>
                     <p className="mt-1 label-mono text-muted">
