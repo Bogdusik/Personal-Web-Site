@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f1efe8;
+  --color-ink: #191917;
+  --color-ink-2: #3e3c38;
+  --color-ink-3: #4a4843;
+  --color-muted: #5e5c55;
+  --color-rule: #bdb9ae;
+  --color-accent: #2438d8;
+}
+
+@theme inline {
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    background-image: url("/grain.png");
+    background-repeat: repeat;
+    background-blend-mode: multiply;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}

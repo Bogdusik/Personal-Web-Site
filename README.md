@@ -1,91 +1,32 @@
-# Personal Web Site
+# Bohdan Bozhenko — portfolio
 
-An interactive portfolio website showcasing technical skills, projects, and achievements. Features smooth animations, particle effects, and an interactive coding challenge to demonstrate programming abilities. Built with React to create an engaging user experience that combines technical skills with creative design.
+Personal site: https://personal-website-bogdusik.vercel.app
 
-## Why It's Cool
+A static one-page site in a "drawing set" style: four sheets (Index, Projects, About, Contact), one accent colour, mono labels. No loaders, no 3D, no tracking.
 
-- **Interactive Particle System**: Dynamic particle background that responds to user mouse movement, creating an engaging visual experience
-- **Coding Challenge Game**: Real-time typing speed test with actual code snippets, algorithm challenges, and performance metrics (WPM, accuracy)
-- **Smooth Animations**: Professional 60fps animations powered by Framer Motion with scroll-triggered animations and micro-interactions
-- **Modern UI/UX**: Clean design with glass morphism effects, responsive layout, and intuitive navigation optimized for all devices
-- **Accessibility First**: Full keyboard navigation, screen reader support, high contrast ratios, and semantic HTML
-- **Performance Optimized**: Fast loading with code splitting, hardware-accelerated animations, and mobile-optimized performance
+## Stack
 
-## Tech Stack
+Next.js 16 (App Router, prerendered), React 19, TypeScript 6, Tailwind CSS 4, Vitest + Testing Library, Vercel. The app lives in `frontend/`.
 
-- **Frontend**: React, JavaScript ES6+, HTML5, CSS3
-- **Animation**: Framer Motion, Canvas API, CSS Animations
-- **Styling**: Custom CSS with responsive design, glass morphism effects
-- **Deployment**: Vercel
+## Run
 
-## How to Run Locally
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Bogdusik/Personal-Web-Site.git
-   cd Personal-Web-Site
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server:**
-   ```bash
-   npm start
-   ```
-   Application will be available at `http://localhost:3000`
-
-   **Alternative (using script):**
-   ```bash
-   ./start-dev.sh
-   ```
-
-> **Note**: This is a frontend-only application. No backend or database setup required.
-
-## Project Structure
-
-```
-Personal-Web-Site/
-├── src/
-│   ├── components/              # React Components
-│   │   ├── Header.js           # Navigation header
-│   │   ├── Hero.js             # Hero section with typing animation
-│   │   ├── About.js             # About section
-│   │   ├── Skills.js            # Skills showcase
-│   │   ├── Projects.js          # Projects gallery
-│   │   ├── InteractiveDemo.js   # Coding challenge game
-│   │   ├── Contact.js            # Contact form
-│   │   ├── Footer.js            # Footer component
-│   │   ├── ParticleBackground.js # Particle system
-│   │   └── ThemeToggle.js       # Dark/light theme toggle
-│   ├── contexts/                # React Contexts
-│   │   └── ThemeContext.js      # Theme management
-│   ├── hooks/                   # Custom Hooks
-│   │   └── useSwipeNavigation.js
-│   ├── utils/                   # Utilities
-│   │   └── constants.js         # App constants
-│   ├── App.js                   # Main app component
-│   └── index.js                 # Entry point
-│
-├── public/                      # Static Assets
-│   ├── images/                  # Images and assets
-│   ├── logo.svg                 # Logo
-│   └── index.html               # HTML template
-│
-└── [config files]               # Configuration files
-    ├── package.json
-    └── .vercelignore
+```bash
+cd frontend
+npm ci
+npm run dev        # http://localhost:3000
+npm test           # unit tests
+npm run build
 ```
 
-## What I Learned
+## Content
 
-- **Advanced React Patterns**: Built complex interactive components using React hooks, context API, and component composition
-- **Animation Libraries**: Implemented smooth animations with Framer Motion, creating engaging user experiences with scroll-triggered animations
-- **Canvas API**: Created custom particle system using HTML5 Canvas API with real-time mouse interaction and performance optimization
-- **Responsive Design**: Designed mobile-first responsive layout with breakpoint optimization and touch-friendly interactions
-- **Accessibility**: Implemented full keyboard navigation, ARIA labels, and semantic HTML for inclusive user experience
-- **Performance Optimization**: Optimized rendering with code splitting, lazy loading, and hardware-accelerated animations for 60fps performance
+All copy is in `frontend/src/content/`. Every number on the site has a source (a file, a commit or a green CI run), listed in `docs/superpowers/specs/2026-10-15-blueprint-redesign-design.md`, section 9. Test counts are shown only for tests that CI runs.
 
-Fork it, use it, improve it  open to PRs!
+## Deployment checks
+
+```bash
+cd frontend
+SMOKE_URL=https://personal-website-bogdusik.vercel.app npm run test:smoke
+```
+
+The smoke tests check the home page, the CV and the old CV URL redirect on the deployment, and that every external link on the site opens and is public. For a protected preview deployment, also set `VERCEL_BYPASS` to a Vercel protection-bypass secret.
