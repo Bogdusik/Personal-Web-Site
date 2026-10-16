@@ -9,7 +9,7 @@ export function MetaLine({ code, right, link }: { code: string; right: string; l
         {link && (
           <>
             {' · '}
-            <a href={link.href} className="text-accent hover:underline">
+            <a href={link.href} className="inline-flex min-h-11 items-center text-accent hover:underline">
               {link.text}
               <span aria-hidden="true">&nbsp;↗</span>
             </a>

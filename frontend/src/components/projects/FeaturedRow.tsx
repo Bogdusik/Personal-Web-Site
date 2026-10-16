@@ -21,7 +21,7 @@ export function FeaturedRow({ project }: { project: Project }) {
           {project.ci?.link && (
             <>
               {' · '}
-              <a href={project.ci.link.href} className="text-accent hover:underline">
+              <a href={project.ci.link.href} className="inline-flex min-h-11 items-center text-accent hover:underline">
                 {project.ci.link.text}
                 <span aria-hidden="true">&nbsp;↗</span>
               </a>

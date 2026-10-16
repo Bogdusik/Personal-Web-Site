@@ -4,7 +4,7 @@ import { Sheet } from '@/components/ui/Sheet';
 import { profile } from '@/content/profile';
 import { SheetBand } from './SheetBand';
 
-const rowClass = 'border-t border-rule py-3.5 lg:py-3';
+const rowClass = 'flex min-h-12 items-center border-t border-rule py-1';
 
 export function ContactSheet() {
   const mailto = `mailto:${profile.email}`;
@@ -40,15 +40,15 @@ export function ContactSheet() {
           <dl className="grid grid-cols-[minmax(0,110px)_minmax(0,1fr)] lg:grid-cols-[130px_minmax(0,1fr)]">
             <dt className={`${rowClass} text-muted`}>EMAIL</dt>
             <dd className={rowClass}>
-              <a href={mailto} className="font-medium break-all hover:text-accent">{profile.email}</a>
+              <a href={mailto} className="inline-flex min-h-11 items-center font-medium break-all hover:text-accent">{profile.email}</a>
             </dd>
             <dt className={`${rowClass} text-muted`}>LINKEDIN</dt>
             <dd className={rowClass}>
-              <a href={profile.linkedin} className="font-medium hover:text-accent">in/bohdan-bozhenko <span aria-hidden="true">↗</span></a>
+              <a href={profile.linkedin} className="inline-flex min-h-11 items-center font-medium hover:text-accent">in/bohdan-bozhenko <span aria-hidden="true">↗</span></a>
             </dd>
             <dt className={`${rowClass} text-muted`}>GITHUB</dt>
             <dd className={rowClass}>
-              <a href={profile.github} className="font-medium hover:text-accent">Bogdusik <span aria-hidden="true">↗</span></a>
+              <a href={profile.github} className="inline-flex min-h-11 items-center font-medium hover:text-accent">Bogdusik <span aria-hidden="true">↗</span></a>
             </dd>
             <dt className={`${rowClass} text-muted`}>LOCATION</dt>
             <dd className={`${rowClass} break-words`}>{profile.location}</dd>

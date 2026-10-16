@@ -2,13 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { externalLinks } from '@/content/links';
 import { landedOnSamePage } from './link-check';
 
-const base = process.env.SMOKE_URL?.replace(/\/$/, '');
-if (!base) throw new Error('Set SMOKE_URL to the deployment to check, e.g. https://personal-website-bogdusik.vercel.app');
+// The deployment checks need SMOKE_URL (e.g. https://personal-website-bogdusik.vercel.app); the external-link checks do not.
+const base = process.env.SMOKE_URL?.replace(/\/$/, '') ?? '';
 
 const bypass = process.env.VERCEL_BYPASS ? { 'x-vercel-protection-bypass': process.env.VERCEL_BYPASS } : undefined;
 const BOT_BLOCKING_HOSTS = ['www.linkedin.com']; // LinkedIn answers 999 to non-browser clients
 
-describe('deployment', () => {
+describe.skipIf(!base)('deployment', () => {
   it('serves the home page', async () => {
     const res = await fetch(`${base}/`, { headers: bypass });
     expect(res.status).toBe(200);

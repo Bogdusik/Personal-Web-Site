@@ -16,7 +16,7 @@
 .diagram {
   display: grid;
   margin-top: 20px;
-  grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
   grid-template-rows: auto 72px auto auto 56px auto;
   grid-template-areas:
     "client  .       ."
@@ -85,7 +85,12 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.edge[data-m="right"] .label, .edge[data-m="left"] .label { display: none; }
+.edge[data-m="right"] .label, .edge[data-m="left"] .label {
+  left: 50%;
+  bottom: calc(50% + 4px);
+  transform: translateX(-50%);
+  font-size: 0.82em;
+}
 
 @media (width >= 64rem) {
   .figure { padding: 16px 20px 32px; background-size: 32px 32px; }
