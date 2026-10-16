@@ -43,7 +43,7 @@ Success criteria:
 | Framework | Next.js, App Router, all routes statically prerendered; default build, not `output: 'export'` | 16.4.1 |
 | UI | React | 19.3.x |
 | Language | TypeScript, `strict` | 6.0.3, not 7.x: `typescript-eslint` supports `<6.1.0` |
-| Styling | Tailwind CSS v4, CSS-first `@theme` tokens | 4.3.x with `@tailwindcss/postcss` |
+| Styling | Tailwind CSS v4, CSS-first `@theme` tokens | 4.3.x via `@tailwindcss/turbopack` (the Next 16.4 scaffold's loader), scoped to `globals.css` |
 | Fonts | `next/font/google`: Schibsted Grotesk (400, 500, 600), IBM Plex Mono (400, 500) | self-hosted at build |
 | Lint | ESLint flat config + `eslint-config-next` | 10.x / 16.4.x |
 | Unit tests | Vitest + Testing Library | 5.x / 16.x |
@@ -64,8 +64,8 @@ deleted in the same branch (it stays in git history).
 Personal-Web-Site/
 ├── frontend/
 │   ├── public/
-│   │   ├── cv.pdf                 # renamed from "CV Bohdan Bozhenko.pdf"
-│   │   ├── grain.png              # 160×160 noise tile, < 8 KB
+│   │   ├── cv.pdf                 # the user's current CV (see below)
+│   │   ├── grain.png              # 128×128 noise tile, < 8 KB (scripts/make-grain.mts)
 │   │   └── favicon.svg
 │   ├── src/
 │   │   ├── app/
@@ -78,19 +78,22 @@ Personal-Web-Site/
 │   │   │   └── not-found.tsx
 │   │   ├── components/            # see section 6
 │   │   └── content/               # typed content, see section 7
-│   ├── scripts/
-│   │   └── check-js-budget.mjs
+│   ├── scripts/                   # Node scripts as .mts (Node 24 strips the types)
+│   │   ├── make-grain.mts
+│   │   └── check-js-budget.mts    # Stage 4
 │   ├── tests/
 │   │   ├── unit/
-│   │   └── e2e/
-│   ├── next.config.ts
-│   ├── vercel.json                # CV redirect
+│   │   ├── smoke/                 # run against a deployment
+│   │   └── e2e/                   # Stage 3
+│   ├── next.config.ts             # Turbopack: Tailwind loader on globals.css only
+│   ├── vercel.json                # CV redirect and CV file name
 │   ├── playwright.config.ts
 │   ├── vitest.config.ts
 │   ├── eslint.config.mjs
 │   └── package.json
 ├── docs/superpowers/specs/
 ├── .github/workflows/ci.yml
+├── .github/workflows/link-check.yml   # weekly production smoke and link check
 └── README.md                      # rewritten for the new stack
 ```
 
@@ -100,18 +103,32 @@ The redirect to `/cv.pdf` lives in `frontend/vercel.json`, not in `next.config.t
 works with either. Because `next start` does not read `vercel.json`, the redirect is verified
 against the Vercel preview deployment, not in local E2E.
 
-The CV file is `CV_Bohdan_Bozhenko_Glasgow.pdf` (fresh Canva export, supplied by the user),
-published as `public/cv.pdf`. The old `public/CV Bohdan Bozhenko.pdf` is not carried over.
+CV file name: `vercel.json` also sends `Content-Disposition: inline; filename="Bohdan_Bozhenko_CV.pdf"`
+for `/cv.pdf`, so the file keeps that name when it is opened in a tab, reached through the old URL
+or saved from a PDF viewer, not only on a left-click with the `download` attribute.
+
+Tailwind loader: `next.config.ts` applies `@tailwindcss/turbopack` to `globals.css` only. The
+scaffold's `*.css` glob also matched `*.module.css` and turned CSS modules into plain CSS, which left
+every module class undefined.
+
+The CV file is the user's corrected Canva export (no phone number, 12 SearchWork findings, new
+Real-time Chat bullets), published as `public/cv.pdf`. No earlier CV file is used. A unit test fails
+until `public/cv.pdf` exists and is a PDF, so CI blocks the merge without it.
 
 ### Deployment steps
 
 Changing a Vercel project's Root Directory affects every deployment of that project, production
 from `main` included, so the switch happens in two projects:
 
+0. **The first production PR carries the SEO work too** (metadata, Open Graph and Twitter cards,
+   JSON-LD, sitemap, robots, OG image, 404), so LinkedIn caches the right card from the first
+   share. Claude does not push: the user pushes the branch and does the Vercel steps.
 1. **Preview project.** Create a second Vercel project from the same repository (for example
    `personal-website-next`) with Root Directory `frontend`, Node 24 and framework Next.js. It
    builds `feature/*` branches; the production project keeps serving the old CRA site from `main`.
-2. **Review on the preview URL:** the content, the CV redirect, and a Lighthouse run on mobile.
+2. **Review on the preview URL:** `SMOKE_URL=<preview> VERCEL_BYPASS=<secret> npm run test:smoke`
+   (home page, CV, CV file name, old-URL redirect, every external link), the content, and a
+   Lighthouse run on mobile.
 3. **Merge** the stage PR into `main` (squash).
 4. **Switch production at merge time:** in the existing project, set Root Directory to `frontend`
    and redeploy `main`. `personal-website-bogdusik.vercel.app` now serves the new site.
@@ -141,8 +158,8 @@ Type scale (desktop / mobile): name 104 / 52 px, line-height 0.92, tracking −0
 role 34 / 22 px, accent; section title 72 / 40 px; card title 26–32 / 18–24 px; body 14–17 px;
 mono labels 10.5–12 px, uppercase, tracking 0.06em.
 
-Grain: `grain.png` tiled as a `background-image` on `body` with `mix-blend-mode: multiply` at
-about 14% opacity. Not a full-screen SVG `feTurbulence` filter: that repaints on scroll and costs
+Grain: `grain.png` (128×128, light greys 200–255 with about 11% alpha baked in) tiled as a
+`background-image` on `body` with `background-blend-mode: multiply`. Not a full-screen SVG `feTurbulence` filter: that repaints on scroll and costs
 frames on mobile.
 
 The sheet frame: an 8px inset with a 1px `--color-rule` border; cells are separated by 1px rules,
@@ -150,7 +167,8 @@ never by shadows or rounded cards. Corner radius is 0 everywhere.
 
 ## 6. Page structure and components
 
-One route, `/`, with four sheets. Anchors: `#work`, `#projects`, `#about`, `#contact`.
+One route, `/`, with four sheets. Anchors: `#index`, `#projects`, `#about`, `#contact`; `#main` is the
+skip-link target.
 
 **Sheet 01 · Index (hero)**
 
@@ -191,6 +209,10 @@ SECURITY).
 EMAIL ME (`mailto:`) and DOWNLOAD CV buttons, direct-lines table (email, LinkedIn, GitHub,
 location, right to work), footer ("© 2026 Bohdan Bozhenko", "Built with Next.js + TypeScript",
 "End of drawing set", back to top).
+
+On mobile the side arrows of the diagram (LLM, INGEST) keep their labels, set small above the arrow
+in a 44px gap. The About sheet reads bio → experience → writing → education → tools on mobile (the
+DOM order of the desktop columns).
 
 Breakpoints: below 1024px every sheet is a single column, in the order of the mobile artboards;
 from 1024px the desktop grids apply, with fluid columns (`fr` / `minmax`) instead of the
@@ -314,7 +336,11 @@ new source.
 
 - WCAG 2.2 AA: contrast as in section 5; visible focus ring (2px accent outline, 2px offset) on
   every interactive element; skip link to `#main`.
-- Real `<a>` and `<button>` elements; touch targets ≥ 44px; icon-only controls carry `aria-label`.
+- Real `<a>` and `<button>` elements; touch targets ≥ 44px (`min-h-11`, including the inline
+  SECURITY AUDIT link, the direct-line links and the article titles); icon-only controls carry
+  `aria-label`.
+- Planned for Stage 3: the mobile menu closes when focus leaves it, and the featured projects get
+  headings on mobile (their `<summary>` rows have none today).
 - One `h1` (the name); sheets use `h2`, cards use `h3`.
 - The system diagram is described in text; decorative glyphs (●, →, ↗) are `aria-hidden`, and
   the link text carries the meaning ("Repository", "Live demo").
@@ -326,7 +352,7 @@ new source.
 - All of `/` is prerendered at build. Server Components everywhere except `MobileMenu`.
 - Budgets: first-load JS for `/` ≤ 130 kB gzip; LCP ≤ 1.8 s and CLS ≤ 0.02 on Lighthouse mobile;
   total transfer for the first view ≤ 350 kB excluding the CV.
-- Enforcement comes in the last implementation stage: `scripts/check-js-budget.mjs` sums the gzip
+- Enforcement comes in the last implementation stage: `scripts/check-js-budget.mts` sums the gzip
   size of every script the prerendered `index.html` references (independent of what `next build`
   prints), and Lighthouse CI asserts the Lighthouse scores and metrics. Before that stage they are
   checked by hand on the preview URL.
@@ -352,7 +378,12 @@ Unit tests (Vitest + Testing Library):
 - every article with a `projectId` matches that project's `links.article`, and vice versa;
 - `ProjectCard` renders LIVE, DEMO and ARTICLE links only when `links.live`, `links.demo` and
   `links.article` are set;
-- `MobileMenu`: toggles `aria-expanded`, closes on Esc and returns focus.
+- `MobileMenu`: toggles `aria-expanded`, closes on Esc and returns focus;
+- `public/cv.pdf` exists and starts with `%PDF-` (red until the CV lands, by design);
+- `vercel.json` has the old-URL redirect and the CV `Content-Disposition` header;
+- the link-landing check: a link passes only when it ends on the page it names (a moved article
+  redirecting home, or a deployment redirecting to a login page, fails);
+- touch targets: the small inline links carry `min-h-11`.
 
 E2E (Playwright, against `next build && next start`, Chromium):
 
@@ -362,8 +393,12 @@ E2E (Playwright, against `next build && next start`, Chromium):
 - `@axe-core/playwright` reports no violations;
 - `/cv.pdf` returns 200.
 
-Deployment smoke (run against the Vercel URL after each deploy, with `BASE_URL`): `/` returns 200,
-`/cv.pdf` returns 200, and `/CV%20Bohdan%20Bozhenko.pdf` answers 308 to `/cv.pdf`.
+Deployment smoke (`npm run test:smoke`, with `SMOKE_URL` set to the deployment; `BASE_URL` is
+reserved by Vite): `/` returns 200; `/cv.pdf` returns 200 as a PDF named `Bohdan_Bozhenko_CV.pdf`;
+`/CV%20Bohdan%20Bozhenko.pdf` answers 308 to `/cv.pdf`; every external link on the site returns
+< 400 and ends on the page it names (LinkedIn is skipped: it answers 999 to bots). Without
+`SMOKE_URL` only the link checks run. `.github/workflows/link-check.yml` runs the suite against
+production every Monday and on demand.
 
 CI (`.github/workflows/ci.yml`, `working-directory: frontend`, Node 24): `npm ci` → lint →
 `tsc --noEmit` → unit tests → build → Playwright; in the last stage, the JS budget script and
@@ -385,4 +420,4 @@ Lighthouse CI join. It runs on pull requests and on pushes to `main`.
    is fully fixed (H1 and P2 are partly fixed), so the card shows "CI ✓ · 483 TESTS · SECURITY
    AUDIT ↗" linking to that file, without a number.
 3. Checkers: a public Vercel URL (the current one is behind Vercel login).
-4. The CV file `CV_Bohdan_Bozhenko_Glasgow.pdf`, supplied by the user.
+4. The corrected CV file, supplied by the user (earlier versions are not used).
