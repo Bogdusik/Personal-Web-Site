@@ -1,0 +1,137 @@
+.figure {
+  margin: 0;
+  padding: 14px 16px 24px;
+  background-image:
+    linear-gradient(rgb(25 25 23 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(25 25 23 / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.diagram {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+  grid-template-rows: auto 72px auto auto 56px auto;
+  grid-template-areas:
+    "client  .       ."
+    "eauth   .       ."
+    "api     ellm    claude"
+    "api     eingest jobs"
+    "eorm    .       ."
+    "db      .       .";
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 8px;
+  border: 1px solid var(--color-ink);
+  background: var(--color-paper);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.node[data-node="claude"] { margin-bottom: 10px; }
+.node[data-node="jobs"] { margin-top: 10px; }
+
+.title { font-weight: 500; }
+.sub { color: var(--color-muted); font-size: 0.92em; }
+.accent { border: 1.5px solid var(--color-accent); color: var(--color-accent); }
+.accent .sub { color: inherit; }
+
+.edge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+.line { flex: 1 1 auto; background: var(--color-ink); }
+.head { flex: none; width: 8px; height: 8px; background: var(--color-ink); }
+.label {
+  position: absolute;
+  color: var(--color-muted);
+  font-size: 0.92em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.edge[data-m="down"]  { flex-direction: column; }
+.edge[data-m="up"]    { flex-direction: column-reverse; }
+.edge[data-m="right"] { flex-direction: row; }
+.edge[data-m="left"]  { flex-direction: row-reverse; }
+.edge[data-m="down"] .line, .edge[data-m="up"] .line { width: 1px; height: auto; }
+.edge[data-m="right"] .line, .edge[data-m="left"] .line { height: 1px; width: auto; }
+.edge[data-m="down"] .head  { clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.edge[data-m="up"] .head    { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.edge[data-m="right"] .head { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.edge[data-m="left"] .head  { clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+.edge[data-m="down"] .label, .edge[data-m="up"] .label {
+  left: calc(50% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.edge[data-m="right"] .label, .edge[data-m="left"] .label {
+  left: 50%;
+  bottom: calc(50% + 4px);
+  transform: translateX(-50%);
+  font-size: 0.82em;
+}
+
+@media (width >= 64rem) {
+  .figure { padding: 16px 20px 32px; background-size: 32px 32px; }
+
+  .diagram {
+    margin-top: 32px;
+    grid-template-columns: minmax(0, 1fr) 92px minmax(0, 1fr) 92px minmax(0, 1fr);
+    grid-template-rows: auto 72px auto 70px auto;
+    grid-template-areas:
+      ".      claude claude  claude ."
+      ".      .      ellm    .      ."
+      "client eauth  api     eorm   db"
+      ".      .      eingest .      ."
+      ".      jobs   jobs    jobs   .";
+    font-size: 11px;
+  }
+
+  .node[data-node="claude"], .node[data-node="jobs"] { margin: 0; }
+
+  .edge[data-d="right"] { flex-direction: row; }
+  .edge[data-d="up"]    { flex-direction: column-reverse; }
+  .edge[data-d="right"] .line { height: 1px; width: auto; }
+  .edge[data-d="up"] .line    { width: 1px; height: auto; }
+  .edge[data-d="right"] .head { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .edge[data-d="up"] .head    { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .edge[data-d="right"] .label {
+    display: block;
+    left: 50%;
+    top: auto;
+    bottom: calc(50% + 6px);
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+  .edge[data-d="up"] .label {
+    display: block;
+    left: calc(50% + 10px);
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+}

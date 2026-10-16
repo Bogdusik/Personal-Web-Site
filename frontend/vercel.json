@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/CV%20Bohdan%20Bozhenko.pdf", "destination": "/cv.pdf", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/cv.pdf",
+      "headers": [{ "key": "Content-Disposition", "value": "inline; filename=\"Bohdan_Bozhenko_CV.pdf\"" }]
+    }
+  ]
+}
